@@ -3,130 +3,311 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-    <section class="py-16 text-center bg-white max-w-4xl mx-auto px-4">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
-            Expert Django &amp; DevOps
-        </h1>
-        <p class="text-lg text-gray-600 mb-8">
-            Développeur backend indépendant, je conçois, développe et maintiens des
-            applications critiques prêtes pour la production.
-        </p>
-        <a
-                href="mailto:petitjean.alexandre.pro@gmail.com"
-                class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded shadow"
-        >
-            📬 Discutons de votre projet
-        </a>
-    </section>
-    <section id="offers" class="py-16 border-t bg-gray-50 max-w-3xl mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-6 text-center">Ce que je propose</h2>
-        <ul class="list-disc space-y-2 text-gray-700 pl-6">
-            <li>🔧 Développeur backend Django senior</li>
-            <li>🧠 Consultant technique (architecture, clean code, dette technique)</li>
-            <li>🚀 Intégrateur DevOps (CI/CD, Docker, monitoring)</li>
-            <li>🧭 CTO-as-a-Service pour petites équipes techniques ou projets en création</li>
-        </ul>
-        <p class="text-gray-700 leading-relaxed mt-4">
-            Je peux travailler seul ou en collaboration avec vos équipes existantes.<br/>
-            Mon objectif est toujours le même : livrer du code robuste, compréhensible, bien intégré dans vos processus
-            métier et technique.
-        </p>
-    </section>
-    <section id="skills" class="py-16 border-t bg-white max-w-4xl mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 text-center">Compétences techniques</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-gray-50 p-4 rounded-lg">
-                <h3 class="font-semibold text-green-700 mb-3">Backend & API</h3>
-                <ul class="text-sm text-gray-700 space-y-1">
-                    <li>• Django, Django REST Framework</li>
-                    <li>• Python (expert), SQL/PLSQL</li>
-                    <li>• Celery, RabbitMQ, Redis</li>
-                    <li>• PostgreSQL, MySQL/MariaDB</li>
-                </ul>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-lg">
-                <h3 class="font-semibold text-blue-700 mb-3">DevOps & Infrastructure</h3>
-                <ul class="text-sm text-gray-700 space-y-1">
-                    <li>• Docker, Docker Compose</li>
-                    <li>• GitLab CI/CD, Jenkins</li>
-                    <li>• Linux, monitoring (Prometheus, Grafana)</li>
-                    <li>• Administration BDD, sécurité</li>
-                </ul>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-lg">
-                <h3 class="font-semibold text-purple-700 mb-3">Méthodologie</h3>
-                <ul class="text-sm text-gray-700 space-y-1">
-                    <li>• Agile/Scrum, Clean Code, TDD</li>
-                    <li>• Documentation (Sphinx, OpenAPI)</li>
-                    <li>• Git, GitLab, PyCharm</li>
-                    <li>• Flutter (mobile), React (notions)</li>
-                </ul>
+    <!-- Hero Section -->
+    <section id="hero" class="pt-24 pb-20 bg-gradient-to-br from-white via-primary-50 to-gray-100">
+        <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm font-medium mb-6">
+                        🚀 Disponible pour nouveaux projets
+                    </div>
+                    <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-gray-900 leading-tight">
+                        Expert Django<br/>
+                        <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">& DevOps</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Développeur backend indépendant, je conçois, développe et maintiens des
+                        applications critiques prêtes pour la production.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact"
+                           class="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-200 hover:shadow-xl">
+                            📬 Discutons de votre projet
+                        </a>
+                        <a href="#projets"
+                           class="inline-flex items-center justify-center border-2 border-gray-300 hover:border-primary-600 text-gray-700 hover:text-primary-600 font-semibold py-3 px-6 rounded-lg transition-colors">
+                            👀 Voir mes réalisations
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="bg-white p-8 rounded-2xl shadow-2xl">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Applications en production</span>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <pre class="text-sm text-gray-800"><code>class ExpertDeveloper:
+    def __init__(self):
+        self.experience = "5+ années"
+        self.stack = ["Django", "DevOps"]
+        self.projects = "Production-ready"
+
+    def deliver(self):
+        return "Code robuste & scalable"</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <section id="projets" class="py-16 border-t max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-10 text-center">Projets récents</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-white p-6 rounded-lg shadow-sm border">
-                <h3 class="text-xl font-semibold mb-2">CRM opérateur télécom</h3>
-                <p class="text-gray-700 text-sm leading-relaxed">
-                    Projet legacy critique (10+ ans), fort enjeux métier. Dev de nouvelles
-                    fonctionnalités, corrections, montée de version.<br/>
-                    <strong>Stack :</strong> Django, DRF, MySQL, Docker, GitLab CI,
-                    RabbitMQ, Redis
-                </p>
+
+    <!-- Services -->
+    <section id="offers" class="py-20 bg-white">
+        <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">Ce que je propose</h2>
+                <p class="text-xl text-gray-600">Des solutions techniques adaptées à vos enjeux business</p>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm border">
-                <h3 class="text-xl font-semibold mb-2">CRM gestion de patrimoine</h3>
-                <p class="text-gray-700 text-sm leading-relaxed">
-                    Projet from scratch. Développement fullstack solo. Mise en prod,
-                    scaling, documentation, monitoring.<br/>
-                    <strong>Résultat :</strong> 70&nbsp;% du business migré sur l’outil.<br/>
-                    <strong>Stack :</strong> Django, PostgreSQL, Docker, Redis, GitLab CI
-                </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="group p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl hover:shadow-lg transition-all duration-300">
+                    <div class="text-3xl mb-4">🔧</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Développement Django</h3>
+                    <p class="text-gray-600 text-sm">Applications web robustes, APIs REST, intégrations complexes</p>
+                </div>
+                <div class="group p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl hover:shadow-lg transition-all duration-300">
+                    <div class="text-3xl mb-4">🧠</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Conseil technique</h3>
+                    <p class="text-gray-600 text-sm">Architecture, clean code, résolution de dette technique</p>
+                </div>
+                <div class="group p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl hover:shadow-lg transition-all duration-300">
+                    <div class="text-3xl mb-4">🚀</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">DevOps & CI/CD</h3>
+                    <p class="text-gray-600 text-sm">Docker, monitoring, déploiements automatisés</p>
+                </div>
+                <div class="group p-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl hover:shadow-lg transition-all duration-300">
+                    <div class="text-3xl mb-4">🧭</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">CTO as a Service</h3>
+                    <p class="text-gray-600 text-sm">Direction technique pour startups et PME</p>
+                </div>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm border md:col-span-2">
-                <h3 class="text-xl font-semibold mb-2">Application logistique multisite</h3>
-                <p class="text-gray-700 text-sm leading-relaxed">
-                    Reprise d’un outil de gestion de stock + dev d’API + apps mobiles
-                    Flutter.<br/>
-                    <strong>Impact :</strong> déploiement sur 20+ sites industriels.<br/>
-                    <strong>Stack :</strong> Django, DRF, Flutter, MySQL, Prometheus,
-                    Grafana
+            <div class="mt-12 text-center bg-gray-50 p-8 rounded-2xl">
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    <strong>Mon approche :</strong> Je peux travailler seul ou en collaboration avec vos équipes
+                    existantes.
+                    Mon objectif est toujours le même : livrer du code robuste, compréhensible, bien intégré dans vos
+                    processus métier et technique.
                 </p>
             </div>
         </div>
     </section>
-    <section id="about" class="py-16 border-t max-w-3xl mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-6 text-center">À propos</h2>
-        <p class="text-gray-700 leading-relaxed mb-4">
-            Je suis développeur backend indépendant, spécialisé en Django depuis plus de 5 ans.<br/>
-            Mon expertise couvre tout le cycle de vie d’une application : architecture, développement, CI/CD, mise en
-            production et supervision.
-        </p>
-        <p class="text-gray-700 leading-relaxed mb-4">
-            Je travaille avec des startups, des PME et des environnements techniques exigeants.<br/>
-            Mon approche : produire du code maintenable, documenté, testé, prêt pour la production.
-        </p>
-        <p class="text-gray-700 leading-relaxed">
-            Je suis à l’aise aussi bien en équipe qu’en autonomie complète.<br/>
-            J’aime comprendre les enjeux métier pour proposer des solutions techniques pertinentes et scalables.
-        </p>
+
+    <!-- Compétences -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">Stack technique</h2>
+                <p class="text-xl text-gray-600">Technologies maîtrisées pour vos projets critiques</p>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">⚡</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-green-700">Backend & API</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Django, Django REST Framework</span>
+                            <span class="text-green-600 font-semibold">Expert</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Python, SQL/PLSQL</span>
+                            <span class="text-green-600 font-semibold">Expert</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Celery, RabbitMQ, Redis</span>
+                            <span class="text-blue-600 font-semibold">Avancé</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">PostgreSQL, MySQL/MariaDB</span>
+                            <span class="text-blue-600 font-semibold">Avancé</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">🐳</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-700">DevOps & Infra</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Docker, Docker Compose</span>
+                            <span class="text-green-600 font-semibold">Expert</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">GitLab CI/CD, Jenkins</span>
+                            <span class="text-blue-600 font-semibold">Avancé</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Linux, monitoring</span>
+                            <span class="text-blue-600 font-semibold">Avancé</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Prometheus, Grafana</span>
+                            <span class="text-blue-600 font-semibold">Avancé</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-700">Méthodologie</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Agile/Scrum, Clean Code</span>
+                            <span class="text-green-600 font-semibold">Expert</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">TDD, Documentation</span>
+                            <span class="text-blue-600 font-semibold">Avancé</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Git, GitLab, PyCharm</span>
+                            <span class="text-blue-600 font-semibold">Avancé</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Flutter, React</span>
+                            <span class="text-gray-600 font-semibold">Notions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <section id="contact" class="py-16 border-t text-center bg-white px-4">
-        <h2 class="text-3xl font-bold mb-4">Contact</h2>
-        <p class="text-gray-700 mb-4">
-            Disponible pour de nouvelles missions freelance ou en régie. Je vous
-            répondrai sous 24h.
-        </p>
-        <a
-                href="mailto:petitjean.alexandre.pro@gmail.com"
-                class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded shadow"
-        >
-            📬 Me contacter
-        </a>
-        <p class="text-sm text-gray-500 mt-2">
-            Ou via <a href="https://www.linkedin.com/in/petitjeana/" class="underline">LinkedIn</a>
-        </p>
+
+    <!-- Projets -->
+    <section id="projets" class="py-20 bg-white">
+        <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">Projets récents</h2>
+                <p class="text-xl text-gray-600">Applications critiques en production</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div class="group bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl border border-gray-200 hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-gray-800 group-hover:text-primary-600 transition-colors">CRM
+                            Opérateur Télécom</h3>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">Legacy</span>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Projet legacy critique (10+ ans) avec forts enjeux métier. Développement de nouvelles
+                        fonctionnalités,
+                        corrections de bugs critiques, et montée de version progressive.
+                    </p>
+                    <div class="mb-4">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Django</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">DRF</span>
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">MySQL</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Docker</span>
+                            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">RabbitMQ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl border border-gray-200 hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-gray-800 group-hover:text-primary-600 transition-colors">CRM
+                            Gestion de Patrimoine</h3>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">From Scratch</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Développement fullstack solo avec rôle de dev, PO et lead technique.
+                        Mise en production complète avec monitoring et scaling.
+                    </p>
+                    <div class="bg-green-50 p-3 rounded-lg mb-4">
+                        <p class="text-green-800 font-semibold text-sm">✅ Résultat : 70% du business migré sur
+                            l'outil</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Django</span>
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">PostgreSQL</span>
+                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Redis</span>
+                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">GitLab CI</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl border border-blue-200">
+                <div class="flex items-start justify-between mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800">Application Logistique Multisite</h3>
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">Scale</span>
+                </div>
+                <p class="text-gray-600 mb-4 leading-relaxed">
+                    Refonte complète d'un outil de gestion de stock legacy + développement d'APIs + applications mobiles
+                    Flutter.
+                </p>
+                <div class="bg-blue-100 p-3 rounded-lg mb-4">
+                    <p class="text-blue-800 font-semibold text-sm">🚀 Impact : Déploiement sur 20+ sites industriels</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Django</span>
+                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">DRF</span>
+                    <span class="bg-cyan-100 text-cyan-800 px-2 py-1 rounded text-xs">Flutter</span>
+                    <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">MySQL</span>
+                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Prometheus</span>
+                    <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">Grafana</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">À propos</h2>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-lg">
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Développeur backend indépendant spécialisé en Django depuis plus de 5 ans,
+                        mon expertise couvre l'intégralité du cycle de vie d'une application :
+                        architecture, développement, CI/CD, mise en production et supervision.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Je travaille avec des startups, des PME et des environnements techniques exigeants.
+                        Mon approche se concentre sur la production de code maintenable, documenté, testé et prêt pour
+                        la production.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        À l'aise aussi bien en équipe qu'en autonomie complète, j'aime comprendre les enjeux métier
+                        pour proposer des solutions techniques pertinentes et scalables.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-screen-xl mx-auto px-6 lg:px-12 text-center">
+            <h2 class="text-4xl font-bold mb-4 text-gray-900">Parlons de votre projet</h2>
+            <p class="text-xl text-gray-600 mb-8">
+                Disponible pour de nouvelles missions freelance ou en régie.<br/>
+                Je vous répondrai sous 24h.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="mailto:petitjean.alexandre.pro@gmail.com"
+                   class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-semibold py-4 px-8 rounded-lg shadow-lg transition-all duration-200 hover:shadow-xl text-lg">
+                    📬 Me contacter par email
+                </a>
+                <a href="https://www.linkedin.com/in/petitjeana/"
+                   class="inline-flex items-center border-2 border-gray-300 hover:border-primary-600 text-gray-700 hover:text-primary-600 font-semibold py-4 px-8 rounded-lg transition-colors text-lg">
+                    💼 LinkedIn
+                </a>
+            </div>
+        </div>
     </section>
 </BaseLayout>

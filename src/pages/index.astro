@@ -3,100 +3,130 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-	<section class="py-16 text-center">
-		<h1 class="text-3xl md:text-5xl font-bold mb-4">
-			Expert Django &amp; DevOps
-		</h1>
-		<p class="text-lg text-gray-600 mb-6">
-			Développeur backend indépendant, je conçois, développe et maintiens des
-			applications critiques prêtes pour la production.
-		</p>
-		<a
-			href="mailto:petitjean.alexandre.pro@gmail.com"
-			class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded shadow"
-		>
-			📬 Discutons de votre projet
-		</a>
-	</section>
-
-	<section id="offers" class="py-16 border-t">
-		<h2 class="text-2xl font-bold mb-6 text-center">Ce que je propose</h2>
-		<ul class="list-disc space-y-2 text-gray-700 pl-6">
-			<li>🔧 Développeur backend Django senior</li>
-			<li>🧠 Consultant technique (architecture, clean code, dette technique)</li>
-			<li>🚀 Intégrateur DevOps (CI/CD, Docker, monitoring)</li>
-			<li>🧭 CTO-as-a-Service pour petites équipes techniques ou projets en création</li>
-		</ul>
-		<p class="text-gray-700 leading-relaxed mt-4">
-			Je peux travailler seul ou en collaboration avec vos équipes existantes.<br/>
-			Mon objectif est toujours le même : livrer du code robuste, compréhensible, bien intégré dans vos processus métier et technique.
-		</p>
-	</section>
-
-	<section id="projets" class="py-16 border-t">
-		<h2 class="text-2xl font-bold mb-6 text-center">Projets récents</h2>
-		<div class="space-y-8">
-			<div>
-				<h3 class="text-xl font-semibold">CRM opérateur télécom</h3>
-				<p class="text-gray-700">
-					Projet legacy critique (10+ ans), fort enjeux métier. Dev de nouvelles
-					fonctionnalités, corrections, montée de version.<br />
-					<strong>Stack :</strong> Django, DRF, MySQL, Docker, GitLab CI,
-					RabbitMQ, Redis
-				</p>
-			</div>
-			<div>
-				<h3 class="text-xl font-semibold">CRM gestion de patrimoine</h3>
-				<p class="text-gray-700">
-					Projet from scratch. Développement fullstack solo. Mise en prod,
-					scaling, documentation, monitoring.<br />
-					<strong>Résultat :</strong> 70&nbsp;% du business migré sur l’outil.<br />
-					<strong>Stack :</strong> Django, PostgreSQL, Docker, Redis, GitLab CI
-				</p>
-			</div>
-			<div>
-				<h3 class="text-xl font-semibold">Application logistique multisite</h3>
-				<p class="text-gray-700">
-					Reprise d’un outil de gestion de stock + dev d’API + apps mobiles
-					Flutter.<br />
-					<strong>Impact :</strong> déploiement sur 20+ sites industriels.<br />
-					<strong>Stack :</strong> Django, DRF, Flutter, MySQL, Prometheus,
-					Grafana
-				</p>
-			</div>
-		</div>
-	</section>
-
-	<section id="about" class="py-16 border-t">
-		<h2 class="text-2xl font-bold mb-6 text-center">À propos</h2>
-		<p class="text-gray-700 leading-relaxed mb-4">
-			Je suis développeur backend indépendant, spécialisé en Django depuis plus de 5 ans.<br/>
-			Mon expertise couvre tout le cycle de vie d’une application : architecture, développement, CI/CD, mise en production et supervision.
-		</p>
-		<p class="text-gray-700 leading-relaxed mb-4">
-			Je travaille avec des startups, des PME et des environnements techniques exigeants.<br/>
-			Mon approche : produire du code maintenable, documenté, testé, prêt pour la production.
-		</p>
-		<p class="text-gray-700 leading-relaxed">
-			Je suis à l’aise aussi bien en équipe qu’en autonomie complète.<br/>
-			J’aime comprendre les enjeux métier pour proposer des solutions techniques pertinentes et scalables.
-		</p>
-	</section>
-
-	<section id="contact" class="py-16 border-t text-center">
-		<h2 class="text-2xl font-bold mb-4">Contact</h2>
-		<p class="text-gray-700 mb-4">
-			Disponible pour de nouvelles missions freelance ou en régie. Je vous
-			répondrai sous 24h.
-		</p>
-		<a
-			href="mailto:petitjean.alexandre.pro@gmail.com"
-			class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded shadow"
-		>
-			📬 Me contacter
-		</a>
-		<p class="text-sm text-gray-500 mt-2">
-			Ou via <a href="https://www.linkedin.com/in/petitjeana/" class="underline">LinkedIn</a>
-		</p>
-	</section>
+    <section class="py-16 text-center bg-white max-w-4xl mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
+            Expert Django &amp; DevOps
+        </h1>
+        <p class="text-lg text-gray-600 mb-8">
+            Développeur backend indépendant, je conçois, développe et maintiens des
+            applications critiques prêtes pour la production.
+        </p>
+        <a
+                href="mailto:petitjean.alexandre.pro@gmail.com"
+                class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded shadow"
+        >
+            📬 Discutons de votre projet
+        </a>
+    </section>
+    <section id="offers" class="py-16 border-t bg-gray-50 max-w-3xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-6 text-center">Ce que je propose</h2>
+        <ul class="list-disc space-y-2 text-gray-700 pl-6">
+            <li>🔧 Développeur backend Django senior</li>
+            <li>🧠 Consultant technique (architecture, clean code, dette technique)</li>
+            <li>🚀 Intégrateur DevOps (CI/CD, Docker, monitoring)</li>
+            <li>🧭 CTO-as-a-Service pour petites équipes techniques ou projets en création</li>
+        </ul>
+        <p class="text-gray-700 leading-relaxed mt-4">
+            Je peux travailler seul ou en collaboration avec vos équipes existantes.<br/>
+            Mon objectif est toujours le même : livrer du code robuste, compréhensible, bien intégré dans vos processus
+            métier et technique.
+        </p>
+    </section>
+    <section id="skills" class="py-16 border-t bg-white max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-8 text-center">Compétences techniques</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-green-700 mb-3">Backend & API</h3>
+                <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• Django, Django REST Framework</li>
+                    <li>• Python (expert), SQL/PLSQL</li>
+                    <li>• Celery, RabbitMQ, Redis</li>
+                    <li>• PostgreSQL, MySQL/MariaDB</li>
+                </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-700 mb-3">DevOps & Infrastructure</h3>
+                <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• Docker, Docker Compose</li>
+                    <li>• GitLab CI/CD, Jenkins</li>
+                    <li>• Linux, monitoring (Prometheus, Grafana)</li>
+                    <li>• Administration BDD, sécurité</li>
+                </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-purple-700 mb-3">Méthodologie</h3>
+                <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• Agile/Scrum, Clean Code, TDD</li>
+                    <li>• Documentation (Sphinx, OpenAPI)</li>
+                    <li>• Git, GitLab, PyCharm</li>
+                    <li>• Flutter (mobile), React (notions)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="projets" class="py-16 border-t max-w-5xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-10 text-center">Projets récents</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm border">
+                <h3 class="text-xl font-semibold mb-2">CRM opérateur télécom</h3>
+                <p class="text-gray-700 text-sm leading-relaxed">
+                    Projet legacy critique (10+ ans), fort enjeux métier. Dev de nouvelles
+                    fonctionnalités, corrections, montée de version.<br/>
+                    <strong>Stack :</strong> Django, DRF, MySQL, Docker, GitLab CI,
+                    RabbitMQ, Redis
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm border">
+                <h3 class="text-xl font-semibold mb-2">CRM gestion de patrimoine</h3>
+                <p class="text-gray-700 text-sm leading-relaxed">
+                    Projet from scratch. Développement fullstack solo. Mise en prod,
+                    scaling, documentation, monitoring.<br/>
+                    <strong>Résultat :</strong> 70&nbsp;% du business migré sur l’outil.<br/>
+                    <strong>Stack :</strong> Django, PostgreSQL, Docker, Redis, GitLab CI
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm border md:col-span-2">
+                <h3 class="text-xl font-semibold mb-2">Application logistique multisite</h3>
+                <p class="text-gray-700 text-sm leading-relaxed">
+                    Reprise d’un outil de gestion de stock + dev d’API + apps mobiles
+                    Flutter.<br/>
+                    <strong>Impact :</strong> déploiement sur 20+ sites industriels.<br/>
+                    <strong>Stack :</strong> Django, DRF, Flutter, MySQL, Prometheus,
+                    Grafana
+                </p>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="py-16 border-t max-w-3xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-6 text-center">À propos</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+            Je suis développeur backend indépendant, spécialisé en Django depuis plus de 5 ans.<br/>
+            Mon expertise couvre tout le cycle de vie d’une application : architecture, développement, CI/CD, mise en
+            production et supervision.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+            Je travaille avec des startups, des PME et des environnements techniques exigeants.<br/>
+            Mon approche : produire du code maintenable, documenté, testé, prêt pour la production.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+            Je suis à l’aise aussi bien en équipe qu’en autonomie complète.<br/>
+            J’aime comprendre les enjeux métier pour proposer des solutions techniques pertinentes et scalables.
+        </p>
+    </section>
+    <section id="contact" class="py-16 border-t text-center bg-white px-4">
+        <h2 class="text-3xl font-bold mb-4">Contact</h2>
+        <p class="text-gray-700 mb-4">
+            Disponible pour de nouvelles missions freelance ou en régie. Je vous
+            répondrai sous 24h.
+        </p>
+        <a
+                href="mailto:petitjean.alexandre.pro@gmail.com"
+                class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded shadow"
+        >
+            📬 Me contacter
+        </a>
+        <p class="text-sm text-gray-500 mt-2">
+            Ou via <a href="https://www.linkedin.com/in/petitjeana/" class="underline">LinkedIn</a>
+        </p>
+    </section>
 </BaseLayout>

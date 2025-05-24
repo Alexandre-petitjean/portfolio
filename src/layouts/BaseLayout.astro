@@ -1,0 +1,30 @@
+---
+import "../styles/global.css";
+---
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Alexandre Petitjean</title>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+<header class="w-full p-6 shadow-md flex justify-between items-center">
+    <h1 class="text-xl font-bold">Alexandre Petitjean</h1>
+    <nav class="space-x-4 text-sm">
+        <a href="/" class="hover:underline">Accueil</a>
+        <a href="#projets" class="hover:underline">Projets</a>
+        <a href="#services" class="hover:underline">Offres</a>
+        <a href="#contact" class="hover:underline">Contact</a>
+    </nav>
+</header>
+
+<main class="p-6 max-w-4xl mx-auto">
+    <slot />
+</main>
+
+<footer class="w-full p-6 mt-12 text-center text-sm text-gray-500">
+    &copy; 2025 Alexandre Petitjean — Tous droits réservés
+</footer>
+</body>
+</html>

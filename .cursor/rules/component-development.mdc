@@ -1,0 +1,68 @@
+---
+description: 
+globs: *.txs
+alwaysApply: false
+---
+# Component Development Rules
+
+This rule activates when creating or modifying Astro components for the portfolio.
+
+## Component Creation Checklist
+- [ ] Define TypeScript interface for props
+- [ ] Add proper JSDoc documentation 
+- [ ] Implement responsive design with Tailwind
+- [ ] Add accessibility attributes (ARIA labels, semantic HTML)
+- [ ] Test component isolation and reusability
+- [ ] Optimize for Core Web Vitals
+
+## Astro Component Structure
+```astro
+---
+interface Props {
+  title: string;
+  variant?: 'primary' | 'secondary';
+  className?: string;
+}
+
+const { title, variant = 'primary', className = '' } = Astro.props;
+---
+
+<div class={`component-base ${variant === 'primary' ? 'primary-styles' : 'secondary-styles'} ${className}`}>
+  <h2>{title}</h2>
+  <slot />
+</div>
+
+<style>
+  .component-base {
+    /* Scoped styles only when Tailwind utilities aren't sufficient */
+  }
+</style>
+```
+
+## Hero Section Component Guidelines
+- Use semantic HTML5 elements (section, header, main)
+- Implement proper heading hierarchy (h1 for main title)
+- Include structured data for SEO when relevant
+- Optimize animations for reduced motion preferences
+- Ensure keyboard navigation support
+
+## Component Props Best Practices
+- Always define TypeScript interfaces for props
+- Use default values in destructuring assignment
+- Validate complex prop types with Zod if needed
+- Document props with JSDoc comments
+- Keep prop APIs minimal and focused
+
+## Styling Guidelines
+- Use Tailwind utilities as primary styling method
+- Resort to scoped CSS only for complex animations or unique layouts
+- Follow mobile-first responsive design patterns
+- Implement dark mode support where applicable
+- Use CSS custom properties for dynamic values
+
+## Testing Considerations
+- Test component rendering with different prop combinations
+- Verify responsive behavior across screen sizes
+- Check accessibility with screen readers
+- Validate performance impact of animations
+- Ensure proper SSR compatibility 

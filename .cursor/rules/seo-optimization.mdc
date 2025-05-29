@@ -1,0 +1,151 @@
+---
+description: 
+globs: *.txs
+alwaysApply: false
+---
+# SEO Optimization Rules
+
+This rule activates when working on SEO, meta tags, structured data, and performance optimization.
+
+## Core SEO Principles for Developer Portfolios
+- Target keywords: "Django developer", "DevOps engineer", "freelance developer"
+- Focus on local SEO if targeting specific geographic regions
+- Optimize for technical skills and programming languages
+- Include project showcases with detailed technical descriptions
+- Implement proper heading hierarchy and semantic HTML
+
+## Meta Tags and Open Graph
+```html
+<!-- Essential meta tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Expert Django & DevOps freelance developer with 5+ years experience. Specializing in scalable web applications and cloud infrastructure.">
+<meta name="keywords" content="Django, DevOps, Python, freelance developer, web development, cloud infrastructure">
+
+<!-- Open Graph for social sharing -->
+<meta property="og:title" content="Alexandre - Django & DevOps Expert">
+<meta property="og:description" content="Professional Django developer and DevOps engineer. Building scalable web applications and robust infrastructure solutions.">
+<meta property="og:image" content="/images/alexandre-portfolio-og.jpg">
+<meta property="og:url" content="https://alexandre-portfolio.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Alexandre - Django & DevOps Expert">
+<meta name="twitter:description" content="Professional Django developer and DevOps engineer">
+<meta name="twitter:image" content="/images/alexandre-portfolio-twitter.jpg">
+```
+
+## Structured Data for Developer Profiles
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Alexandre",
+  "jobTitle": "Django & DevOps Developer",
+  "description": "Expert freelance developer specializing in Django web applications and DevOps infrastructure",
+  "url": "https://alexandre-portfolio.com",
+  "sameAs": [
+    "https://linkedin.com/in/alexandre",
+    "https://github.com/alexandre"
+  ],
+  "knowsAbout": [
+    "Django",
+    "Python",
+    "DevOps",
+    "Docker",
+    "Kubernetes",
+    "AWS",
+    "CI/CD"
+  ],
+  "workLocation": {
+    "@type": "Place",
+    "name": "Remote / On-site"
+  }
+}
+</script>
+```
+
+## Core Web Vitals Optimization
+- **LCP (Largest Contentful Paint)**: < 2.5s
+  - Optimize hero images with proper sizing and lazy loading
+  - Use Astro's Image component for automatic optimization
+  - Implement resource preloading for critical assets
+
+- **FID (First Input Delay)**: < 100ms
+  - Minimize JavaScript bundles
+  - Use Astro's partial hydration (client:* directives)
+  - Defer non-critical scripts
+
+- **CLS (Cumulative Layout Shift)**: < 0.1
+  - Define dimensions for images and embeds
+  - Avoid inserting content above existing content
+  - Use font-display: swap for web fonts
+
+## Technical SEO Checklist
+- [ ] Generate and submit XML sitemap
+- [ ] Implement proper robots.txt
+- [ ] Add canonical URLs to prevent duplicate content
+- [ ] Set up 404 error page with helpful navigation
+- [ ] Implement breadcrumb navigation where applicable
+- [ ] Use descriptive alt text for all images
+- [ ] Optimize URLs with meaningful slugs
+- [ ] Add structured data for projects and skills
+
+## Image Optimization for Portfolio
+```astro
+---
+import { Image } from 'astro:assets';
+import projectImage from '../assets/project-screenshot.jpg';
+---
+
+<Image
+  src={projectImage}
+  alt="Django e-commerce platform with real-time inventory management"
+  width={800}
+  height={600}
+  loading="lazy"
+  format="webp"
+  quality={85}
+/>
+```
+
+## Content Strategy for Developer Portfolios
+- Write detailed project descriptions with technical challenges
+- Include code snippets and architecture decisions
+- Create case studies showing problem-solving approach
+- Add testimonials and client feedback
+- Document technology stack and methodologies used
+- Include metrics and performance improvements achieved
+
+## Local SEO for Freelancers
+- Add location-based keywords if targeting specific regions
+- Include "freelance" and "consultant" in meta descriptions
+- Optimize for "Django developer near me" type searches
+- Add business schema markup if operating as a business
+- Include contact information and availability
+
+## Performance Monitoring
+- Set up Google Search Console
+- Monitor Core Web Vitals with PageSpeed Insights
+- Track keyword rankings for target terms
+- Use Google Analytics for user behavior insights
+- Monitor page load speeds across different devices
+- Track conversion rates for contact forms
+
+## Content Freshness Strategy
+- Regularly update project showcases
+- Add new skills and certifications
+- Include recent technology adoptions
+- Update availability status
+- Add blog posts about technical insights
+- Refresh testimonials and case studies
+
+## Mobile SEO Considerations
+- Ensure responsive design across all devices
+- Test touch interactions and button sizes
+- Optimize for mobile page speed
+- Check mobile usability in Search Console
+- Implement mobile-friendly navigation patterns
+- Test form submissions on mobile devices 

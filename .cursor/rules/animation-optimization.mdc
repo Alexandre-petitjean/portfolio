@@ -1,0 +1,90 @@
+# Animation Optimization Rules
+
+This rule activates when working with animations, transitions, and interactive elements.
+
+## Performance-First Animation Principles
+- Prefer CSS animations over JavaScript for simple transitions
+- Use `transform` and `opacity` properties for smooth 60fps animations
+- Avoid animating layout properties (width, height, top, left)
+- Implement `will-change` property judiciously and remove after animation
+- Use `animation-fill-mode: forwards` to maintain end state
+
+## CSS Animation Best Practices
+```css
+/* Preferred: GPU-accelerated properties */
+.smooth-animation {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* Use will-change sparingly */
+.about-to-animate {
+  will-change: transform;
+}
+
+/* Clean up after animation */
+.animation-complete {
+  will-change: auto;
+}
+```
+
+## Tailwind Animation Utilities
+- Use `animate-pulse`, `animate-bounce`, `animate-spin` for simple effects
+- Combine with `motion-safe:` prefix for accessibility
+- Create custom animations in Tailwind config when needed
+- Use `duration-*` and `ease-*` utilities for consistent timing
+
+## JavaScript Animation Guidelines
+- Use `requestAnimationFrame` for smooth custom animations
+- Prefer `setTimeout` over `setInterval` for sequenced animations
+- Clean up timeouts and intervals in component cleanup
+- Use Intersection Observer for scroll-triggered animations
+- Implement proper loading states and skeleton screens
+
+## Terminal Animation Specific Rules
+- Use `typing` effect with CSS `steps()` function for realistic output
+- Implement proper cursor blinking with CSS animations
+- Sequence commands with realistic delays between outputs
+- Remove cursor after animation completion to prevent distraction
+- Use monospace fonts for consistent character spacing
+
+## Reduced Motion Support
+```css
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+## Animation Performance Checklist
+- [ ] Test on mobile devices for performance
+- [ ] Verify 60fps with browser dev tools
+- [ ] Check memory usage during long animations
+- [ ] Ensure animations don't block main thread
+- [ ] Test with reduced motion preferences
+- [ ] Validate accessibility with screen readers
+
+## Scroll-Based Animation Guidelines
+- Use Intersection Observer for entrance animations
+- Implement threshold values for precise trigger points
+- Add `motion-safe:` classes for accessibility compliance
+- Consider using CSS `scroll-timeline` for modern browsers
+- Provide fallbacks for browsers without support
+
+## Loading Animation Patterns
+- Implement skeleton screens for content loading
+- Use subtle pulse animations for loading states
+- Ensure loading indicators have sufficient contrast
+- Provide clear feedback for async operations
+- Avoid spinner overuse; prefer skeleton content
+
+## Animation Debugging
+- Use browser dev tools to monitor frame rates
+- Check for layout thrashing in Timeline
+- Profile memory usage during animations
+- Test animations across different screen sizes
+- Validate performance on lower-end devices 

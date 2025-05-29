@@ -1,0 +1,114 @@
+---
+description: 
+globs: *.txs
+alwaysApply: false
+---
+# Cursor Rules for Expert Django & DevOps Portfolio (Astro + TypeScript + Tailwind)
+
+You are an expert in JavaScript, TypeScript, Astro framework, Tailwind CSS, and modern web development for professional portfolio sites.
+
+## Project Context
+- **Purpose**: Professional portfolio for a Django & DevOps freelance developer
+- **Stack**: Astro v5, TypeScript, Tailwind CSS v4, modular component architecture
+- **Focus**: Performance, SEO, modern design patterns, and maintainable code
+
+## Code Style and Structure
+- Write concise, technical TypeScript code with accurate Astro examples
+- Use functional and declarative programming patterns; avoid classes except for data models
+- Prioritize static generation and minimal JavaScript for optimal performance
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
+- Structure files: exported component, subcomponents, helpers, static content, types
+- Leverage Astro's partial hydration and multi-framework support effectively
+## Astro Best Practices
+- Create .astro files for Astro components with proper frontmatter separation
+- Use Astro's component props and slots for data passing and composition
+- Implement proper component composition and reusability patterns
+- Leverage Astro's built-in components like `<Image />` for optimization
+- Use file-based routing system in src/pages/ directory effectively
+- Implement dynamic routes using [...slug].astro syntax when needed
+- Use getStaticPaths() for generating static pages with dynamic routes
+- Minimize client-side JavaScript; leverage Astro's static generation
+- Use client:* directives judiciously for partial hydration:
+  - client:load for immediately needed interactivity
+  - client:idle for non-critical interactivity  
+  - client:visible for components that should hydrate when visible
+
+## TypeScript Usage
+- Use TypeScript for all code; prefer interfaces over types for component props
+- Define proper types for Astro component props and frontmatter
+- Use strict typing for function returns and variables
+- Avoid `any` type; use proper type definitions for complex data structures
+- Create type definitions for API responses and data models
+
+## Tailwind CSS Guidelines
+- Use Tailwind utility classes extensively in Astro components
+- Leverage Tailwind's responsive design utilities (sm:, md:, lg:, xl:, 2xl:)
+- Utilize Tailwind's color palette and spacing scale for consistency
+- Use Tailwind's modern CSS features (container queries, arbitrary values sparingly)
+- Implement mobile-first responsive design approach
+- Use semantic color classes (primary-*, gray-*, etc.) as defined in the project
+- Prefer utility classes over custom CSS; use @apply sparingly
+- Use Tailwind's animation utilities for micro-interactions
+
+## Component Architecture
+- Organize components in src/components/ with clear hierarchy:
+  - src/components/hero/ for hero-specific components
+  - src/components/sections/ for page sections
+  - src/layouts/ for layout components
+- Create reusable, focused components with single responsibilities
+- Use Astro's slot system for flexible component composition
+- Implement proper prop validation with TypeScript interfaces
+- Keep components pure and predictable
+
+## Performance Optimization
+- Prioritize static generation over server-side rendering
+- Optimize images using Astro's built-in Image component
+- Implement proper lazy loading for images and non-critical assets
+- Use Astro's built-in asset optimization features
+- Minimize bundle size by code-splitting and lazy loading
+- Leverage browser caching strategies
+
+## Error Handling and Development
+- Always raise errors explicitly, never silently ignore them
+- Use specific error types that clearly indicate what went wrong
+- Implement proper error boundaries for client-side components
+- Use meaningful error messages for development and debugging
+- Add proper console logging for development debugging
+
+## SEO and Meta Tags
+- Use Astro's <head> tag for adding meta information
+- Implement canonical URLs for proper SEO
+- Create reusable SEO component patterns
+- Optimize for Core Web Vitals (LCP, FID, CLS)
+- Use semantic HTML structure for accessibility
+
+## File Organization
+- Follow Astro's recommended project structure
+- Use clear, descriptive file names with proper extensions (.astro, .ts, .css)
+- Organize styles in src/styles/ directory
+- Keep public assets in public/ directory
+- Use proper import/export patterns
+
+## Development Workflow
+- Use descriptive commit messages following conventional commit format
+- Write minimal, focused changes that solve specific problems
+- Test responsive design across different screen sizes
+- Validate accessibility with semantic HTML and ARIA attributes
+- Ensure cross-browser compatibility
+
+## Portfolio-Specific Guidelines
+- Maintain professional, clean aesthetic suitable for developer portfolio
+- Ensure fast loading times for optimal user experience
+- Implement smooth animations that enhance UX without being distracting
+- Focus on showcasing technical expertise through code quality and design
+- Maintain consistent branding and visual hierarchy
+
+## Key Conventions
+- Use named exports for components when possible
+- Prefer composition over inheritance
+- Keep component complexity low; split large components
+- Use Astro's scoped styling when component-specific styles are needed
+- Follow modern JavaScript/TypeScript patterns (destructuring, async/await)
+- Implement proper loading states for dynamic content
+
+Remember: This is a professional portfolio that represents expertise in Django and DevOps. Every code choice should reflect high-quality, production-ready development practices. 

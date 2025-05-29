@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <html lang="fr">
@@ -9,30 +11,12 @@ import "../styles/global.css";
     <title>Alexandre Petitjean - Expert Django & DevOps</title>
 </head>
 <body class="bg-gray-50">
-<!-- Navigation -->
-<nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm border-b border-gray-200 z-50">
-    <div class="max-w-6xl mx-auto px-6 lg:px-12 py-3">
-        <div class="flex justify-between items-center">
-            <div class="font-bold text-xl text-gray-800">Alexandre Petitjean</div>
-            <div class="hidden md:flex space-x-6 text-sm">
-                <a href="#hero" class="hover:text-primary-600 transition-colors">Accueil</a>
-                <a href="#offers" class="hover:text-primary-600 transition-colors">Services</a>
-                <a href="#skills" class="hover:text-primary-600 transition-colors">Compétences</a>
-                <a href="#projets" class="hover:text-primary-600 transition-colors">Projets</a>
-                <a href="#contact" class="hover:text-primary-600 transition-colors">Contact</a>
-            </div>
-        </div>
-    </div>
-</nav>
+    <Navigation />
 
-<main class="p-6 mx-auto">
-    <slot/>
-</main>
+    <main class="mx-auto">
+        <slot/>
+    </main>
 
-<footer class="bg-gray-800 text-white py-8">
-    <div class="max-w-6xl mx-auto px-6 lg:px-12 text-center">
-        <p class="text-gray-400">© 2025 Alexandre Petitjean - Expert Django & DevOps</p>
-    </div>
-</footer>
+    <Footer />
 </body>
 </html>

@@ -1,49 +1,100 @@
-<section id="hero" class="pt-24 pb-20 bg-gradient-to-br from-white via-primary-50 to-gray-100">
-    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <div class="inline-flex items-center bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm font-medium mb-6">
-                    🚀 Disponible pour nouveaux projets
-                </div>
-                <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-gray-900 leading-tight">
-                    Expert Django<br/>
-                    <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">& DevOps</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                    Développeur backend indépendant, je conçois, développe et maintiens des
-                    applications critiques prêtes pour la production.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contact"
-                       class="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-200 hover:shadow-xl">
-                        📬 Discutons de votre projet
-                    </a>
-                    <a href="#projets"
-                       class="inline-flex items-center justify-center border-2 border-gray-300 hover:border-primary-600 text-gray-700 hover:text-primary-600 font-semibold py-3 px-6 rounded-lg transition-colors">
-                        👀 Voir mes réalisations
-                    </a>
-                </div>
-            </div>
-            <div class="hidden lg:block">
-                <div class="bg-white p-8 rounded-2xl shadow-2xl">
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                            <span class="text-sm text-gray-600">Applications en production</span>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <pre class="text-sm text-gray-800"><code>class ExpertDeveloper:
-    def __init__(self):
-        self.experience = "5+ années"
-        self.stack = ["Django", "DevOps"]
-        self.projects = "Production-ready"
+---
+import StatsSection from "../hero/StatsSection.astro";
+import Terminal from "../hero/Terminal.astro";
+---
 
-    def deliver(self):
-        return "Code robuste & scalable"</code></pre>
-                        </div>
-                    </div>
+<section id="hero" class="relative min-h-screen flex items-center bg-gradient-to-br from-gray-900 via-gray-800 to-primary-900 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0 bg-white/5" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 20px 20px;"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative max-w-screen-2xl mx-auto px-6 lg:px-12 py-20">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Column -->
+            <div class="text-white space-y-8">
+                <!-- Status Badge -->
+                <div class="inline-flex items-center space-x-2 bg-primary-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-primary-400/50">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-100"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-primary-300"></span>
+                    </span>
+                    <span class="font-semibold">Disponible pour nouveaux projets</span>
                 </div>
+
+                <!-- Main Title -->
+                <div class="space-y-4">
+                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                        <span class="block">Expert</span>
+                        <span class="bg-gradient-to-r from-primary-400 to-primary-200 bg-clip-text text-transparent whitespace-nowrap">
+                            Django & DevOps
+                        </span>
+                    </h1>
+                    <p class="text-xl text-gray-300 leading-relaxed max-w-2xl">
+                        Développeur fullstack indépendant, je conçois et maintiens des applications critiques 
+                        prêtes pour la production avec une approche DevOps moderne.
+                    </p>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#contact" 
+                       class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 ease-out rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-900">
+                        <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-primary-800 group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"></span>
+                        <span class="absolute inset-0 w-full h-full bg-primary-600 border-2 border-primary-500 group-hover:bg-primary-500 rounded-lg"></span>
+                        <span class="relative flex items-center space-x-3">
+                            <!-- Chat Bubble Left Ellipsis Icon -->
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                            </svg>
+                            <span>Discutons de votre projet</span>
+                            <!-- Arrow Right Icon -->
+                            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="#projets" 
+                       class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 ease-out rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-900">
+                        <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-gray-800 group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"></span>
+                        <span class="absolute inset-0 w-full h-full bg-transparent border-2 border-gray-600 group-hover:border-primary-500 group-hover:bg-primary-500/10 rounded-lg"></span>
+                        <span class="relative flex items-center space-x-3 group-hover:text-primary-400 transition-colors">
+                            <!-- Eye Icon -->
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                            <span>Voir mes réalisations</span>
+                            <!-- Arrow Right Icon -->
+                            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <StatsSection />
+            </div>
+
+            <!-- Right Column -->
+            <div class="relative hidden lg:block">
+                <!-- Terminal Window -->
+                <Terminal />
+
+                <!-- Floating Elements -->
+                <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary-500/20 rounded-full blur-2xl"></div>
+                <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl"></div>
             </div>
         </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <!-- Chevron Down Icon -->
+        <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
     </div>
 </section> 

@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@iconify-json/heroicons": "^1.2.2",
     "@tailwindcss/vite": "^4.1.7",
     "astro": "^5.9.2",
+    "astro-icon": "^1.1.5",
     "tailwindcss": "^4.1.7"
   }
 }

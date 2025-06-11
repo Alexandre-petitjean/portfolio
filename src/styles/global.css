@@ -13,3 +13,12 @@
     --color-primary-900: #14532d;
     --color-primary-950: #052e16;
 }
+
+@layer base {
+  html {
+    @apply bg-white text-gray-900;
+  }
+  html.dark {
+    @apply bg-gradient-to-br from-gray-900 via-gray-800 to-primary-900 text-white;
+  }
+}

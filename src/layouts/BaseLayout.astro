@@ -9,8 +9,15 @@ import Footer from "../components/Footer.astro";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alexandre Petitjean - Expert Django & DevOps</title>
+    <script>
+      const stored = localStorage.getItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if(stored === 'dark' || (!stored && systemDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-primary-900">
+<body>
     <Navigation />
 
     <main class="mx-auto">

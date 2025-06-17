@@ -93,8 +93,12 @@ body {
   .text-text-secondary { color: var(--color-text-secondary); }
   .text-text-muted { color: var(--color-text-muted); }
   
+  /* Couleurs de fond pour text-muted */
+  .bg-text-muted { background-color: var(--color-text-muted); }
+  
   /* Couleurs de bordure */
   .border-border { border-color: var(--color-border); }
+  .border-text-muted { border-color: var(--color-text-muted); }
   
   /* Couleurs primary */
   .bg-primary-50 { background-color: var(--color-primary-50); }

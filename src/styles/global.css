@@ -1,15 +1,180 @@
 @import "tailwindcss";
 
-@theme {
-    --color-primary-50: #f0fdf4;
-    --color-primary-100: #dcfce7;
-    --color-primary-200: #bbf7d0;
-    --color-primary-300: #86efac;
-    --color-primary-400: #4ade80;
-    --color-primary-500: #22c55e;
-    --color-primary-600: #16a34a;
-    --color-primary-700: #15803d;
-    --color-primary-800: #166534;
-    --color-primary-900: #14532d;
-    --color-primary-950: #052e16;
+/* Variables CSS pour les thèmes */
+:root {
+  /* Couleurs de base - thème clair */
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-text: #1f2937;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  
+  /* Couleurs primary - thème clair */
+  --color-primary-50: #f0fdf4;
+  --color-primary-100: #dcfce7;
+  --color-primary-200: #bbf7d0;
+  --color-primary-300: #86efac;
+  --color-primary-400: #4ade80;
+  --color-primary-500: #22c55e;
+  --color-primary-600: #16a34a;
+  --color-primary-700: #15803d;
+  --color-primary-800: #166534;
+  --color-primary-900: #14532d;
+  --color-primary-950: #052e16;
+  
+  /* Couleurs gray - thème clair */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+}
+
+.dark {
+  color-scheme: dark;
+  
+  /* Couleurs de base - thème sombre */
+  --color-bg: #111827;
+  --color-bg-secondary: #1f2937;
+  --color-text: #e5e7eb;
+  --color-text-secondary: #d1d5db;
+  --color-text-muted: #9ca3af;
+  --color-border: #374151;
+  
+  /* Couleurs primary - thème sombre (inversées logiquement) */
+  --color-primary-50: #052e16;
+  --color-primary-100: #14532d;
+  --color-primary-200: #166534;
+  --color-primary-300: #15803d;
+  --color-primary-400: #22c55e;
+  --color-primary-500: #4ade80;
+  --color-primary-600: #86efac;
+  --color-primary-700: #bbf7d0;
+  --color-primary-800: #dcfce7;
+  --color-primary-900: #f0fdf4;
+  --color-primary-950: #f7fef9;
+  
+  /* Couleurs gray - thème sombre (inversées) */
+  --color-gray-50: #111827;
+  --color-gray-100: #1f2937;
+  --color-gray-200: #374151;
+  --color-gray-300: #4b5563;
+  --color-gray-400: #6b7280;
+  --color-gray-500: #9ca3af;
+  --color-gray-600: #d1d5db;
+  --color-gray-700: #e5e7eb;
+  --color-gray-800: #f3f4f6;
+  --color-gray-900: #f9fafb;
+}
+
+/* Styles de base */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Classes utilitaires personnalisées */
+@layer utilities {
+  /* Couleurs de fond */
+  .bg-bg { background-color: var(--color-bg); }
+  .bg-bg-secondary { background-color: var(--color-bg-secondary); }
+  
+  /* Couleurs de texte */
+  .text-text { color: var(--color-text); }
+  .text-text-secondary { color: var(--color-text-secondary); }
+  .text-text-muted { color: var(--color-text-muted); }
+  
+  /* Couleurs de bordure */
+  .border-border { border-color: var(--color-border); }
+  
+  /* Couleurs primary */
+  .bg-primary-50 { background-color: var(--color-primary-50); }
+  .bg-primary-100 { background-color: var(--color-primary-100); }
+  .bg-primary-200 { background-color: var(--color-primary-200); }
+  .bg-primary-300 { background-color: var(--color-primary-300); }
+  .bg-primary-400 { background-color: var(--color-primary-400); }
+  .bg-primary-500 { background-color: var(--color-primary-500); }
+  .bg-primary-600 { background-color: var(--color-primary-600); }
+  .bg-primary-700 { background-color: var(--color-primary-700); }
+  .bg-primary-800 { background-color: var(--color-primary-800); }
+  .bg-primary-900 { background-color: var(--color-primary-900); }
+  
+  .text-primary-50 { color: var(--color-primary-50); }
+  .text-primary-100 { color: var(--color-primary-100); }
+  .text-primary-200 { color: var(--color-primary-200); }
+  .text-primary-300 { color: var(--color-primary-300); }
+  .text-primary-400 { color: var(--color-primary-400); }
+  .text-primary-500 { color: var(--color-primary-500); }
+  .text-primary-600 { color: var(--color-primary-600); }
+  .text-primary-700 { color: var(--color-primary-700); }
+  .text-primary-800 { color: var(--color-primary-800); }
+  .text-primary-900 { color: var(--color-primary-900); }
+  
+  /* Couleurs gray personnalisées */
+  .bg-theme-gray-50 { background-color: var(--color-gray-50); }
+  .bg-theme-gray-100 { background-color: var(--color-gray-100); }
+  .bg-theme-gray-200 { background-color: var(--color-gray-200); }
+  .bg-theme-gray-300 { background-color: var(--color-gray-300); }
+  .bg-theme-gray-400 { background-color: var(--color-gray-400); }
+  .bg-theme-gray-500 { background-color: var(--color-gray-500); }
+  .bg-theme-gray-600 { background-color: var(--color-gray-600); }
+  .bg-theme-gray-700 { background-color: var(--color-gray-700); }
+  .bg-theme-gray-800 { background-color: var(--color-gray-800); }
+  .bg-theme-gray-900 { background-color: var(--color-gray-900); }
+  
+  .text-theme-gray-50 { color: var(--color-gray-50); }
+  .text-theme-gray-100 { color: var(--color-gray-100); }
+  .text-theme-gray-200 { color: var(--color-gray-200); }
+  .text-theme-gray-300 { color: var(--color-gray-300); }
+  .text-theme-gray-400 { color: var(--color-gray-400); }
+  .text-theme-gray-500 { color: var(--color-gray-500); }
+  .text-theme-gray-600 { color: var(--color-gray-600); }
+  .text-theme-gray-700 { color: var(--color-gray-700); }
+  .text-theme-gray-800 { color: var(--color-gray-800); }
+  .text-theme-gray-900 { color: var(--color-gray-900); }
+  
+  /* Bordures primary */
+  .border-primary-200 { border-color: var(--color-primary-200); }
+  .border-primary-300 { border-color: var(--color-primary-300); }
+  .border-primary-400 { border-color: var(--color-primary-400); }
+  .border-primary-500 { border-color: var(--color-primary-500); }
+  .border-primary-600 { border-color: var(--color-primary-600); }
+  
+  /* Gradients primary */
+  .from-primary-400 { --tw-gradient-from: var(--color-primary-400); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-primary-500 { --tw-gradient-from: var(--color-primary-500); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-primary-600 { --tw-gradient-from: var(--color-primary-600); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  
+  .to-primary-400 { --tw-gradient-to: var(--color-primary-400); }
+  .to-primary-500 { --tw-gradient-to: var(--color-primary-500); }
+  .to-primary-600 { --tw-gradient-to: var(--color-primary-600); }
+  .to-primary-700 { --tw-gradient-to: var(--color-primary-700); }
+  
+  /* Gradients gray personnalisés */
+  .from-theme-gray-200 { --tw-gradient-from: var(--color-gray-200); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-theme-gray-300 { --tw-gradient-from: var(--color-gray-300); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .to-theme-gray-400 { --tw-gradient-to: var(--color-gray-400); }
+  .to-theme-gray-500 { --tw-gradient-to: var(--color-gray-500); }
+  
+  /* Hover states pour les boutons */
+  .hover\:bg-primary-700:hover { background-color: var(--color-primary-700); }
+  .hover\:bg-theme-gray-100:hover { background-color: var(--color-gray-100); }
+}
+
+/* Réduction du mouvement pour l'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

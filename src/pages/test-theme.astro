@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+    <div class="min-h-screen bg-bg p-8 space-y-8">
+        <h1 class="text-4xl font-bold mb-8 text-text">Test des Thèmes</h1>
+        
+        <!-- Test des couleurs de base -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-text">Couleurs de base</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-4 rounded-lg bg-bg border border-border">
+                    <p class="text-text">bg (background)</p>
+                </div>
+                <div class="p-4 rounded-lg bg-bg-secondary border border-border">
+                    <p class="text-text">bg-secondary</p>
+                </div>
+                <div class="p-4 rounded-lg bg-bg border border-border">
+                    <p class="text-text-secondary">text-secondary</p>
+                </div>
+                <div class="p-4 rounded-lg bg-bg border border-border">
+                    <p class="text-text-muted">text-muted</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test des couleurs primary -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-text">Couleurs Primary</h2>
+            <div class="grid grid-cols-5 gap-2">
+                <div class="p-4 rounded text-center bg-primary-50">
+                    <p class="text-xs text-text">50</p>
+                </div>
+                <div class="p-4 rounded text-center bg-primary-100">
+                    <p class="text-xs text-text">100</p>
+                </div>
+                <div class="p-4 rounded text-center bg-primary-200">
+                    <p class="text-xs text-text">200</p>
+                </div>
+                <div class="p-4 rounded text-center bg-primary-300">
+                    <p class="text-xs text-text">300</p>
+                </div>
+                <div class="p-4 rounded text-center bg-primary-400">
+                    <p class="text-xs text-white">400</p>
+                </div>
+                <div class="p-4 rounded text-center bg-primary-500">
+                    <p class="text-xs text-white">500</p>
+                </div>
+                <div class="p-4 rounded text-center bg-primary-600">
+                    <p class="text-xs text-white">600</p>
+                </div>
+                <div class="p-4 rounded text-center bg-primary-700">
+                    <p class="text-xs text-white">700</p>
+                </div>
+                <div class="p-4 rounded text-center bg-primary-800">
+                    <p class="text-xs text-white">800</p>
+                </div>
+                <div class="p-4 rounded text-center bg-primary-900">
+                    <p class="text-xs text-white">900</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test des couleurs gray -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-text">Couleurs Gray</h2>
+            <div class="grid grid-cols-5 gap-2">
+                <div class="p-4 rounded text-center bg-theme-gray-50">
+                    <p class="text-xs text-text">50</p>
+                </div>
+                <div class="p-4 rounded text-center bg-theme-gray-100">
+                    <p class="text-xs text-text">100</p>
+                </div>
+                <div class="p-4 rounded text-center bg-theme-gray-200">
+                    <p class="text-xs text-text">200</p>
+                </div>
+                <div class="p-4 rounded text-center bg-theme-gray-300">
+                    <p class="text-xs text-text">300</p>
+                </div>
+                <div class="p-4 rounded text-center bg-theme-gray-400">
+                    <p class="text-xs text-white">400</p>
+                </div>
+                <div class="p-4 rounded text-center bg-theme-gray-500">
+                    <p class="text-xs text-white">500</p>
+                </div>
+                <div class="p-4 rounded text-center bg-theme-gray-600">
+                    <p class="text-xs text-white">600</p>
+                </div>
+                <div class="p-4 rounded text-center bg-theme-gray-700">
+                    <p class="text-xs text-white">700</p>
+                </div>
+                <div class="p-4 rounded text-center bg-theme-gray-800">
+                    <p class="text-xs text-white">800</p>
+                </div>
+                <div class="p-4 rounded text-center bg-theme-gray-900">
+                    <p class="text-xs text-white">900</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test des boutons -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-text">Boutons</h2>
+            <div class="flex gap-4">
+                <button class="px-6 py-3 text-white rounded-lg transition-colors bg-primary-600 hover:bg-primary-700">
+                    Bouton Primary
+                </button>
+                <button class="px-6 py-3 rounded-lg transition-colors bg-bg-secondary text-text border border-border hover:bg-theme-gray-100">
+                    Bouton Secondary
+                </button>
+            </div>
+        </div>
+        
+        <!-- Test des gradients -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-text">Gradients</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="h-24 rounded-lg bg-gradient-to-r from-primary-400 to-primary-600 flex items-center justify-center">
+                    <p class="text-white font-semibold">Gradient Primary</p>
+                </div>
+                <div class="h-24 rounded-lg bg-gradient-to-r from-theme-gray-200 to-theme-gray-400 flex items-center justify-center">
+                    <p class="text-text font-semibold">Gradient Gray</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-text">Instructions</h2>
+            <div class="p-6 rounded-lg bg-bg-secondary border border-border">
+                <p class="text-text-secondary mb-4">
+                    Utilisez le bouton de changement de thème dans la navigation pour tester le passage entre les thèmes clair et sombre.
+                </p>
+                <p class="text-text-muted">
+                    Toutes les couleurs ci-dessus devraient s'adapter automatiquement au thème sélectionné.
+                </p>
+            </div>
+        </div>
+    </div>
+</BaseLayout> 

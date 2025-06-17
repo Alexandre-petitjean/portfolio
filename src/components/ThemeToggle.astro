@@ -1,0 +1,94 @@
+<button
+    id="theme-toggle"
+    aria-label="Basculer entre le thème clair et sombre"
+    class="relative p-2 rounded-lg bg-bg-secondary hover:bg-gray-200 border border-border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-bg"
+>
+    <!-- Icône Soleil (thème clair) -->
+    <svg 
+        id="sun-icon" 
+        class="w-5 h-5 text-primary-600 transition-all duration-200" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+    >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+    </svg>
+    
+    <!-- Icône Lune (thème sombre) -->
+    <svg 
+        id="moon-icon" 
+        class="w-5 h-5 text-primary-600 transition-all duration-200 hidden" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+    >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+    </svg>
+</button>
+
+<script>
+    // Fonction pour mettre à jour l'icône selon le thème actuel
+    function updateThemeIcon() {
+        const isDark = document.documentElement.classList.contains('dark');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        
+        if (isDark) {
+            sunIcon?.classList.add('hidden');
+            moonIcon?.classList.remove('hidden');
+        } else {
+            sunIcon?.classList.remove('hidden');
+            moonIcon?.classList.add('hidden');
+        }
+    }
+    
+    // Fonction pour basculer le thème
+    function toggleTheme() {
+        const root = document.documentElement;
+        const isDark = root.classList.toggle('dark');
+        
+        // Sauvegarde la préférence
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        
+        // Met à jour l'icône
+        updateThemeIcon();
+        
+        // Dispatch un événement personnalisé pour notifier d'autres composants si nécessaire
+        window.dispatchEvent(new CustomEvent('theme-changed', { 
+            detail: { theme: isDark ? 'dark' : 'light' } 
+        }));
+    }
+    
+    // Initialisation au chargement de la page
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Met à jour l'icône initiale
+        updateThemeIcon();
+        
+        // Ajoute l'écouteur d'événement
+        themeToggle?.addEventListener('click', toggleTheme);
+        
+        // Écoute les changements de préférences système
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        mediaQuery.addEventListener('change', (e) => {
+            // Ne change que si aucune préférence utilisateur n'est stockée
+            if (!localStorage.getItem('theme')) {
+                const root = document.documentElement;
+                if (e.matches) {
+                    root.classList.add('dark');
+                } else {
+                    root.classList.remove('dark');
+                }
+                updateThemeIcon();
+            }
+        });
+    });
+    
+    // Support pour la navigation côté client (SPA-like)
+    document.addEventListener('astro:page-load', () => {
+        updateThemeIcon();
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle?.addEventListener('click', toggleTheme);
+    });
+</script> 

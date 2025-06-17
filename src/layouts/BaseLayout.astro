@@ -10,8 +10,27 @@ import Footer from "../components/Footer.astro";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alexandre Petitjean - Expert Django & DevOps</title>
     
+    <!-- Script d'initialisation du thème (avant le rendu pour éviter le FOUC) -->
+    <script is:inline>
+        (() => {
+            // Récupère le thème stocké ou utilise les préférences système
+            const stored = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = stored || (systemPrefersDark ? 'dark' : 'light');
+            
+            // Applique immédiatement la classe dark si nécessaire
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+            
+            // Sauvegarde le thème s'il n'était pas déjà stocké
+            if (!stored) {
+                localStorage.setItem('theme', theme);
+            }
+        })();
+    </script>
 </head>
-<body class="bg-gradient-to-br from-gray-50 via-white to-primary-50 dark:from-gray-900 dark:via-gray-800 dark:to-primary-900 transition-colors duration-300">
+<body class="bg-bg text-text transition-colors duration-300">
     <Navigation />
 
     <main class="mx-auto">

@@ -2,83 +2,83 @@
 // Terminal component with Python syntax highlighting
 ---
 
-<div class="relative bg-white dark:bg-gray-900 rounded-lg shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700">
+<div class="relative bg-bg rounded-lg shadow-2xl overflow-hidden border border-border">
     <!-- Terminal Header -->
-    <div class="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <div class="flex items-center px-4 py-2 bg-bg-secondary border-b border-border">
         <div class="flex space-x-2">
             <div class="w-3 h-3 rounded-full bg-red-500"></div>
             <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div class="w-3 h-3 rounded-full bg-green-500"></div>
         </div>
-        <div class="flex-1 text-center text-sm text-gray-600 dark:text-gray-400">expert_developer.py</div>
+        <div class="flex-1 text-center text-sm text-text-muted">expert_developer.py</div>
     </div>
     
     <!-- Terminal Content -->
     <div class="p-6 font-mono text-sm leading-relaxed">
         <div class="space-y-3">
             <!-- Command 1: cat file -->
-            <div class="flex items-start space-x-2 text-gray-600 dark:text-gray-400">
-                <span class="text-green-600 dark:text-green-400">$</span>
+            <div class="flex items-start space-x-2 text-text-muted">
+                <span class="text-green-600">$</span>
                 <span class="typing-command" data-text="cat expert_developer.py">cat expert_developer.py</span>
             </div>
             
             <!-- Python Code with syntax highlighting -->
             <div class="text-sm" id="code-display" style="opacity: 0;">
                 <div class="mb-2">
-                    <span class="text-purple-600 dark:text-purple-400">class</span>
-                    <span class="text-blue-700 dark:text-yellow-300"> ExpertDeveloper</span>
-                    <span class="text-gray-900 dark:text-white">:</span>
+                    <span class="text-purple-600">class</span>
+                    <span class="text-yellow-300"> ExpertDeveloper</span>
+                    <span class="text-text">:</span>
                 </div>
                 <div class="ml-4">
-                    <span class="text-purple-600 dark:text-purple-400">def</span>
-                    <span class="text-blue-600 dark:text-blue-300"> __init__</span>
-                    <span class="text-gray-900 dark:text-white">(</span>
-                    <span class="text-orange-600 dark:text-orange-400">self</span>
-                    <span class="text-gray-900 dark:text-white">):</span>
+                    <span class="text-purple-600">def</span>
+                    <span class="text-blue-300"> __init__</span>
+                    <span class="text-text">(</span>
+                    <span class="text-orange-400">self</span>
+                    <span class="text-text">):</span>
                 </div>
                 <div class="ml-8 space-y-1 mb-4">
                     <div>
-                        <span class="text-orange-600 dark:text-orange-400">self</span><span class="text-gray-900 dark:text-white">.</span><span class="text-blue-600 dark:text-blue-300">experience</span>
-                        <span class="text-gray-900 dark:text-white"> = </span>
-                        <span class="text-green-600 dark:text-green-300">"5+ années"</span>
+                        <span class="text-orange-400">self</span><span class="text-text">.</span><span class="text-blue-300">experience</span>
+                        <span class="text-text"> = </span>
+                        <span class="text-green-300">"5+ années"</span>
                     </div>
                     <div>
-                        <span class="text-orange-600 dark:text-orange-400">self</span><span class="text-gray-900 dark:text-white">.</span><span class="text-blue-600 dark:text-blue-300">stack</span>
-                        <span class="text-gray-900 dark:text-white"> = [</span>
-                        <span class="text-green-600 dark:text-green-300">"Django"</span>
-                        <span class="text-gray-900 dark:text-white">, </span>
-                        <span class="text-green-600 dark:text-green-300">"DevOps"</span>
-                        <span class="text-gray-900 dark:text-white">, </span>
-                        <span class="text-green-600 dark:text-green-300">"Flutter"</span>
-                        <span class="text-gray-900 dark:text-white">]</span>
+                        <span class="text-orange-400">self</span><span class="text-text">.</span><span class="text-blue-300">stack</span>
+                        <span class="text-text"> = [</span>
+                        <span class="text-green-300">"Django"</span>
+                        <span class="text-text">, </span>
+                        <span class="text-green-300">"DevOps"</span>
+                        <span class="text-text">, </span>
+                        <span class="text-green-300">"Flutter"</span>
+                        <span class="text-text">]</span>
                     </div>
                     <div>
-                        <span class="text-orange-600 dark:text-orange-400">self</span><span class="text-gray-900 dark:text-white">.</span><span class="text-blue-600 dark:text-blue-300">projects</span>
-                        <span class="text-gray-900 dark:text-white"> = </span>
-                        <span class="text-green-600 dark:text-green-300">"Production-ready"</span>
+                        <span class="text-orange-400">self</span><span class="text-text">.</span><span class="text-blue-300">projects</span>
+                        <span class="text-text"> = </span>
+                        <span class="text-green-300">"Production-ready"</span>
                     </div>
                 </div>
                 <div class="ml-4 mb-1">
-                    <span class="text-purple-600 dark:text-purple-400">def</span>
-                    <span class="text-blue-600 dark:text-blue-300"> deploy</span>
-                    <span class="text-gray-900 dark:text-white">(</span>
-                    <span class="text-orange-600 dark:text-orange-400">self</span>
-                    <span class="text-gray-900 dark:text-white">):</span>
+                    <span class="text-purple-600">def</span>
+                    <span class="text-blue-300"> deploy</span>
+                    <span class="text-text">(</span>
+                    <span class="text-orange-400">self</span>
+                    <span class="text-text">):</span>
                 </div>
                 <div class="ml-8">
-                    <span class="text-purple-600 dark:text-purple-400">return</span>
-                    <span class="text-green-600 dark:text-green-300"> "✅ Déployé avec succès!"</span>
+                    <span class="text-purple-600">return</span>
+                    <span class="text-green-300"> "✅ Déployé avec succès!"</span>
                 </div>
             </div>
             
             <!-- Command 2: python -->
-            <div class="flex items-start space-x-2 text-gray-600 dark:text-gray-400" id="command-2" style="opacity: 0;">
-                <span class="text-green-600 dark:text-green-400">$</span>
+            <div class="flex items-start space-x-2 text-text-muted" id="command-2" style="opacity: 0;">
+                <span class="text-green-600">$</span>
                 <span class="typing-command-2" data-text="python expert_developer.py">python expert_developer.py</span>
             </div>
             
             <!-- Output -->
-            <div class="text-green-600 dark:text-green-400" id="output" style="opacity: 0;">
+            <div class="text-green-400" id="output" style="opacity: 0;">
                 <span class="inline-block animate-pulse">●</span> Expert Django & DevOps initialisé
                 <br>
                 <span class="inline-block animate-pulse">●</span> Prêt pour nouveaux projets !

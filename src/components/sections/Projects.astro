@@ -5,19 +5,19 @@ import ProjectCard from "../ProjectCard.astro";
 <section id="projets" class="relative min-h-screen flex items-center overflow-hidden">
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-5">
-        <div class="absolute inset-0 bg-white/5" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 20px 20px;"></div>
+        <div class="absolute inset-0 bg-gray-900/5 dark:bg-white/5" style="background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0); background-size: 20px 20px;"></div>
     </div>
 
     <div class="relative max-w-screen-2xl mx-auto px-6 lg:px-12 py-20 w-full">
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-white">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
                 Projets 
-                <span class="bg-gradient-to-r from-primary-400 to-primary-200 bg-clip-text text-transparent">
+                <span class="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">
                     récents
                 </span>
             </h2>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 Applications critiques en production avec un impact métier mesurable
             </p>
         </div>
@@ -85,27 +85,27 @@ import ProjectCard from "../ProjectCard.astro";
         </div>
 
         <!-- Call to Action -->
-        <div class="relative p-8 lg:p-12 bg-gradient-to-br from-primary-900/30 to-gray-900/30 backdrop-blur-sm border border-primary-500/30 rounded-3xl text-center">
+        <div class="relative p-8 lg:p-12 bg-gradient-to-br from-primary-50/70 to-white/70 dark:from-primary-900/30 dark:to-gray-900/30 backdrop-blur-sm border border-primary-500/30 rounded-3xl text-center">
             <div class="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent rounded-3xl"></div>
             <div class="relative">
                 <div class="flex items-center justify-center space-x-4 mb-6">
-                    <div class="w-12 h-12 text-primary-400">
+                    <div class="w-12 h-12 text-primary-600 dark:text-primary-400">
                         <!-- Lightbulb Icon -->
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-full h-full">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-white">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
                         Vous avez un 
-                        <span class="bg-gradient-to-r from-primary-400 to-primary-200 bg-clip-text text-transparent">projet en tête ?</span>
+                        <span class="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">projet en tête ?</span>
                     </h3>
                 </div>
-                <p class="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8">
-                    Ces projets reflètent mon approche : <strong class="text-white">comprendre les enjeux métier</strong>, 
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8">
+                    Ces projets reflètent mon approche : <strong class="text-gray-900 dark:text-white">comprendre les enjeux métier</strong>, 
                     concevoir des solutions robustes et assurer une mise en production sans accroc.
                 </p>
-                <a href="#contact" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 ease-out rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-900">
-                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-primary-800 group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"></span>
+                <a href="#contact" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 ease-out rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">
+                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-primary-700 dark:bg-primary-800 group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"></span>
                     <span class="absolute inset-0 w-full h-full bg-primary-600 border-2 border-primary-500 group-hover:bg-primary-500 rounded-lg"></span>
                     <span class="relative flex items-center space-x-3">
                         <!-- Chat Icon -->

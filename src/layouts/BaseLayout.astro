@@ -13,19 +13,28 @@ import Footer from "../components/Footer.astro";
     <!-- Script d'initialisation du thème (avant le rendu pour éviter le FOUC) -->
     <script is:inline>
         (() => {
-            // Récupère le thème stocké ou utilise les préférences système
-            const stored = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = stored || (systemPrefersDark ? 'dark' : 'light');
-            
-            // Applique immédiatement la classe dark si nécessaire
-            if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
+            // Fonction pour appliquer le thème
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
             }
             
-            // Sauvegarde le thème s'il n'était pas déjà stocké
-            if (!stored) {
-                localStorage.setItem('theme', theme);
+            // Récupère le thème stocké
+            const storedTheme = localStorage.getItem('theme');
+            
+            if (storedTheme) {
+                // Si l'utilisateur a une préférence stockée, l'utiliser
+                applyTheme(storedTheme);
+            } else {
+                // Sinon, utiliser les préférences système
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const systemTheme = systemPrefersDark ? 'dark' : 'light';
+                applyTheme(systemTheme);
+                // Sauvegarder la préférence système comme défaut
+                localStorage.setItem('theme', systemTheme);
             }
         })();
     </script>

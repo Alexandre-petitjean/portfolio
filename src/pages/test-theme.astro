@@ -6,6 +6,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="min-h-screen bg-bg p-8 space-y-8">
         <h1 class="text-4xl font-bold mb-8 text-text">Test des Thèmes</h1>
         
+        <!-- Informations de debug -->
+        <div class="bg-bg-secondary p-6 rounded-lg border border-border mb-8">
+            <h2 class="text-2xl font-bold text-text mb-4">Informations de Debug</h2>
+            <div class="space-y-2 text-text-secondary">
+                <p><strong>Thème stocké :</strong> <span id="stored-theme">-</span></p>
+                <p><strong>Préférence système :</strong> <span id="system-preference">-</span></p>
+                <p><strong>Thème actuel :</strong> <span id="current-theme">-</span></p>
+                <p><strong>Classe dark présente :</strong> <span id="dark-class">-</span></p>
+            </div>
+            <button id="refresh-info" class="mt-4 px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 transition-colors">
+                Actualiser les infos
+            </button>
+        </div>
+        
         <!-- Test des couleurs de base -->
         <div class="space-y-4">
             <h2 class="text-2xl font-bold text-text">Couleurs de base</h2>
@@ -28,36 +42,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <!-- Test des couleurs primary -->
         <div class="space-y-4">
             <h2 class="text-2xl font-bold text-text">Couleurs Primary</h2>
-            <div class="grid grid-cols-5 gap-2">
-                <div class="p-4 rounded text-center bg-primary-50">
-                    <p class="text-xs text-text">50</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-4 rounded-lg bg-primary-50 border border-border">
+                    <p class="text-text">primary-50</p>
                 </div>
-                <div class="p-4 rounded text-center bg-primary-100">
-                    <p class="text-xs text-text">100</p>
+                <div class="p-4 rounded-lg bg-primary-100 border border-border">
+                    <p class="text-text">primary-100</p>
                 </div>
-                <div class="p-4 rounded text-center bg-primary-200">
-                    <p class="text-xs text-text">200</p>
+                <div class="p-4 rounded-lg bg-primary-500 border border-border">
+                    <p class="text-white">primary-500</p>
                 </div>
-                <div class="p-4 rounded text-center bg-primary-300">
-                    <p class="text-xs text-text">300</p>
-                </div>
-                <div class="p-4 rounded text-center bg-primary-400">
-                    <p class="text-xs text-white">400</p>
-                </div>
-                <div class="p-4 rounded text-center bg-primary-500">
-                    <p class="text-xs text-white">500</p>
-                </div>
-                <div class="p-4 rounded text-center bg-primary-600">
-                    <p class="text-xs text-white">600</p>
-                </div>
-                <div class="p-4 rounded text-center bg-primary-700">
-                    <p class="text-xs text-white">700</p>
-                </div>
-                <div class="p-4 rounded text-center bg-primary-800">
-                    <p class="text-xs text-white">800</p>
-                </div>
-                <div class="p-4 rounded text-center bg-primary-900">
-                    <p class="text-xs text-white">900</p>
+                <div class="p-4 rounded-lg bg-primary-600 border border-border">
+                    <p class="text-white">primary-600</p>
                 </div>
             </div>
         </div>
@@ -115,12 +111,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <!-- Test des gradients -->
         <div class="space-y-4">
             <h2 class="text-2xl font-bold text-text">Gradients</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="h-24 rounded-lg bg-gradient-to-r from-primary-400 to-primary-600 flex items-center justify-center">
-                    <p class="text-white font-semibold">Gradient Primary</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-8 rounded-lg bg-gradient-to-r from-primary-400 to-primary-600 text-white text-center">
+                    <p class="font-bold">Gradient Primary</p>
                 </div>
-                <div class="h-24 rounded-lg bg-gradient-to-r from-theme-gray-200 to-theme-gray-400 flex items-center justify-center">
-                    <p class="text-text font-semibold">Gradient Gray</p>
+                <div class="p-8 rounded-lg bg-gradient-to-r from-theme-gray-200 to-theme-gray-400 text-text text-center">
+                    <p class="font-bold">Gradient Gray</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test des composants -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-text">Composants</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-6 bg-bg-secondary rounded-lg border border-border">
+                    <h3 class="text-lg font-bold text-text mb-2">Card Example</h3>
+                    <p class="text-text-secondary mb-4">Ceci est un exemple de carte avec différents niveaux de texte.</p>
+                    <button class="px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 transition-colors">
+                        Action Button
+                    </button>
+                </div>
+                <div class="p-6 bg-bg rounded-lg border border-primary-500/20">
+                    <h3 class="text-lg font-bold text-primary-600 mb-2">Primary Card</h3>
+                    <p class="text-text-muted mb-4">Carte avec bordure primary et couleurs thématiques.</p>
+                    <span class="px-3 py-1 bg-primary-500/20 text-primary-700 text-sm rounded-full border border-primary-400/30">
+                        Badge
+                    </span>
                 </div>
             </div>
         </div>
@@ -138,4 +155,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
         </div>
     </div>
+
+    <script>
+        function updateDebugInfo() {
+            const storedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            const hasDarkClass = document.documentElement.classList.contains('dark');
+
+            const storedEl = document.getElementById('stored-theme');
+            const systemEl = document.getElementById('system-preference');
+            const currentEl = document.getElementById('current-theme');
+            const darkEl = document.getElementById('dark-class');
+
+            if (storedEl) storedEl.textContent = storedTheme || 'null';
+            if (systemEl) systemEl.textContent = systemPrefersDark ? 'dark' : 'light';
+            if (currentEl) currentEl.textContent = currentTheme;
+            if (darkEl) darkEl.textContent = hasDarkClass ? 'oui' : 'non';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDebugInfo();
+            
+            document.getElementById('refresh-info')?.addEventListener('click', updateDebugInfo);
+            
+            // Écoute les changements de thème
+            window.addEventListener('theme-changed', updateDebugInfo);
+        });
+
+        // Support pour la navigation côté client
+        document.addEventListener('astro:page-load', () => {
+            updateDebugInfo();
+            document.getElementById('refresh-info')?.addEventListener('click', updateDebugInfo);
+        });
+    </script>
 </BaseLayout> 

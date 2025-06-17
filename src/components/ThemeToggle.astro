@@ -27,6 +27,16 @@
 </button>
 
 <script>
+    // Fonction pour appliquer le thème
+    function applyTheme(theme: string) {
+        const root = document.documentElement;
+        if (theme === 'dark') {
+            root.classList.add('dark');
+        } else {
+            root.classList.remove('dark');
+        }
+    }
+    
     // Fonction pour mettre à jour l'icône selon le thème actuel
     function updateThemeIcon() {
         const isDark = document.documentElement.classList.contains('dark');
@@ -46,40 +56,58 @@
     function toggleTheme() {
         const root = document.documentElement;
         const isDark = root.classList.toggle('dark');
+        const newTheme = isDark ? 'dark' : 'light';
         
-        // Sauvegarde la préférence
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        // Sauvegarde la préférence utilisateur
+        localStorage.setItem('theme', newTheme);
         
         // Met à jour l'icône
         updateThemeIcon();
         
         // Dispatch un événement personnalisé pour notifier d'autres composants si nécessaire
         window.dispatchEvent(new CustomEvent('theme-changed', { 
-            detail: { theme: isDark ? 'dark' : 'light' } 
+            detail: { theme: newTheme } 
         }));
+    }
+    
+    // Fonction d'initialisation
+    function initializeTheme() {
+        const storedTheme = localStorage.getItem('theme');
+        
+        if (storedTheme) {
+            // Utilise la préférence stockée
+            applyTheme(storedTheme);
+        } else {
+            // Utilise les préférences système si aucune préférence stockée
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const systemTheme = systemPrefersDark ? 'dark' : 'light';
+            applyTheme(systemTheme);
+            localStorage.setItem('theme', systemTheme);
+        }
+        
+        // Met à jour l'icône
+        updateThemeIcon();
     }
     
     // Initialisation au chargement de la page
     document.addEventListener('DOMContentLoaded', () => {
         const themeToggle = document.getElementById('theme-toggle');
         
-        // Met à jour l'icône initiale
-        updateThemeIcon();
+        // Initialise le thème
+        initializeTheme();
         
-        // Ajoute l'écouteur d'événement
+        // Ajoute l'écouteur d'événement pour le toggle
         themeToggle?.addEventListener('click', toggleTheme);
         
         // Écoute les changements de préférences système
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         mediaQuery.addEventListener('change', (e) => {
             // Ne change que si aucune préférence utilisateur n'est stockée
-            if (!localStorage.getItem('theme')) {
-                const root = document.documentElement;
-                if (e.matches) {
-                    root.classList.add('dark');
-                } else {
-                    root.classList.remove('dark');
-                }
+            const storedTheme = localStorage.getItem('theme');
+            if (!storedTheme) {
+                const systemTheme = e.matches ? 'dark' : 'light';
+                applyTheme(systemTheme);
+                localStorage.setItem('theme', systemTheme);
                 updateThemeIcon();
             }
         });
@@ -87,7 +115,7 @@
     
     // Support pour la navigation côté client (SPA-like)
     document.addEventListener('astro:page-load', () => {
-        updateThemeIcon();
+        initializeTheme();
         const themeToggle = document.getElementById('theme-toggle');
         themeToggle?.addEventListener('click', toggleTheme);
     });

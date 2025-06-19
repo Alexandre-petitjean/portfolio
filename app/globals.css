@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary-50: #f0fdf4;
+    --color-primary-100: #dcfce7;
+    --color-primary-200: #bbf7d0;
+    --color-primary-300: #86efac;
+    --color-primary-400: #4ade80;
+    --color-primary-500: #22c55e;
+    --color-primary-600: #16a34a;
+    --color-primary-700: #15803d;
+    --color-primary-800: #166534;
+    --color-primary-900: #14532d;
+    --color-primary-950: #052e16;
+}
+
+@layer base {
+  * {
+    @apply border-gray-200 dark:border-gray-700;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-gray-50 via-white to-primary-50 dark:from-gray-900 dark:via-gray-800 dark:to-primary-900 transition-colors duration-300;
+  }
+}
+
+/* Scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations for typing effect */
+@keyframes typing-command-1 {
+  from { width: 0 }
+  to { width: 25ch; }
+}
+
+@keyframes typing-command-2 {
+  from { width: 0 }
+  to { width: 30ch; }
+}
+
+.typing-command {
+  border-right: 2px solid #4ade80;
+  animation: typing-command-1 1.5s steps(25, end);
+  animation-delay: 0.5s;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  animation-fill-mode: forwards;
+  display: inline-block;
+}
+
+.typing-command-2 {
+  border-right: 2px solid #4ade80;
+  animation: typing-command-2 1.8s steps(30, end);
+  animation-delay: 4.2s;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  animation-fill-mode: forwards;
+  display: inline-block;
+}

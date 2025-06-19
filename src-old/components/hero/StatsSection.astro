@@ -1,0 +1,16 @@
+---
+import StatsCard from "./StatsCard.astro";
+
+const stats = [
+    { value: "5+", label: "Années d'expérience" },
+    { value: "20+", label: "Projets livrés" },
+    { value: "100%", label: "Satisfaction client" }
+];
+---
+
+<!-- Stats -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-8">
+    {stats.map((stat) => (
+        <StatsCard value={stat.value} label={stat.label} />
+    ))}
+</div> 

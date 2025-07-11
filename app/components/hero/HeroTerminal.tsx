@@ -15,12 +15,12 @@ const terminalData = {
   },
   outcome: {
     command: "$ outcome",
-    result: "> Livraison à l’heure. Équipe libérée. Business sécurisé.",
+    result: "> Livraison à l'heure. Équipe libérée. Business sécurisé.",
   },
   feedback: {
     command: "$ feedback",
     result:
-      "> “Alexandre a sauvé notre sprint. Et notre budget.” – un CTO rassuré",
+      '> "Alexandre a sauvé notre sprint. Et notre budget." – un CTO rassuré',
   },
   current_status: {
     command: "$ current_status",
@@ -30,7 +30,7 @@ const terminalData = {
 
 export default function HeroTerminal() {
   return (
-    <Terminal className="h-96">
+    <Terminal className="h-96 w-full">
       <div className="space-y-3 font-mono text-sm leading-relaxed">
         <TypingAnimation duration={30}>
           {terminalData.situation.command}
@@ -41,23 +41,25 @@ export default function HeroTerminal() {
         <TypingAnimation duration={30} delay={800}>
           {terminalData.action.command}
         </TypingAnimation>
-        <AnimatedSpan delay={1200}>{terminalData.action.result}</AnimatedSpan>
-        <TypingAnimation duration={30} delay={1800}>
+        <AnimatedSpan delay={1200} className="terminal-result">
+          {terminalData.action.result}
+        </AnimatedSpan>
+        <TypingAnimation duration={30} delay={1600}>
           {terminalData.outcome.command}
         </TypingAnimation>
-        <AnimatedSpan delay={2200} className="terminal-result">
+        <AnimatedSpan delay={2000} className="terminal-result">
           {terminalData.outcome.result}
         </AnimatedSpan>
-        <TypingAnimation duration={30} delay={2600}>
+        <TypingAnimation duration={30} delay={2400}>
           {terminalData.feedback.command}
         </TypingAnimation>
-        <AnimatedSpan delay={3000} className="terminal-result">
+        <AnimatedSpan delay={2800} className="terminal-result">
           {terminalData.feedback.result}
         </AnimatedSpan>
-        <TypingAnimation duration={30} delay={3400}>
+        <TypingAnimation duration={30} delay={3200}>
           {terminalData.current_status.command}
         </TypingAnimation>
-        <AnimatedSpan delay={3800} className="terminal-result">
+        <AnimatedSpan delay={3600} className="terminal-result">
           {terminalData.current_status.result}
         </AnimatedSpan>
       </div>

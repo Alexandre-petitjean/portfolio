@@ -1,5 +1,5 @@
-import { ProjectCard } from "./ProjectCard"
 import { Lightbulb, MessageSquare, ArrowRight } from "lucide-react"
+import {ProjectCard} from "@/app/components/ProjectCard";
 
 export default function ProjectsSection() {
   return (

@@ -1,8 +1,23 @@
 "use client";
 
 import { MessageSquare, ArrowRight, Eye, ChevronDown } from "lucide-react";
-import { StatsCard } from "@/app/components/StatsCard";
+import { StatsCard } from "@/app/components/hero/StatsCard";
 import HeroTerminal from "@/app/components/hero/HeroTerminal";
+
+const heroText = {
+  available: "Disponible pour nouveaux projets",
+  title1: "Expert",
+  title2: "Django & DevOps",
+  description:
+    "Développeur fullstack indépendant, je conçois et maintiens des applications critiques prêtes pour la production avec une approche DevOps moderne.",
+  contact: "Discutons de votre projet",
+  projects: "Voir mes réalisations",
+  stats: [
+    { value: "5+", label: "Années d'expérience" },
+    { value: "20+", label: "Projets livrés" },
+    { value: "100%", label: "Satisfaction client" },
+  ],
+};
 
 function ContactButton() {
   return (
@@ -14,7 +29,7 @@ function ContactButton() {
       <span className="absolute inset-0 w-full h-full bg-primary-600 border-2 border-primary-500 group-hover:bg-primary-500 rounded-lg"></span>
       <span className="relative flex items-center space-x-3">
         <MessageSquare className="w-5 h-5" />
-        <span>Discutons de votre projet</span>
+        <span>{heroText.contact}</span>
         <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
       </span>
     </a>
@@ -31,7 +46,7 @@ function ProjectsButton() {
       <span className="absolute inset-0 w-full h-full bg-transparent border-2 border-gray-300 dark:border-gray-600 group-hover:border-primary-500 group-hover:bg-primary-500/10 rounded-lg"></span>
       <span className="relative flex items-center space-x-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
         <Eye className="w-5 h-5" />
-        <span>Voir mes réalisations</span>
+        <span>{heroText.projects}</span>
         <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
       </span>
     </a>
@@ -39,12 +54,6 @@ function ProjectsButton() {
 }
 
 export function HeroSection() {
-  const stats = [
-    { value: "5+", label: "Années d'expérience" },
-    { value: "20+", label: "Projets livrés" },
-    { value: "100%", label: "Satisfaction client" },
-  ];
-
   return (
     <section
       id="hero"
@@ -61,21 +70,17 @@ export function HeroSection() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-500 dark:bg-primary-400 opacity-100"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-primary-600 dark:bg-primary-300"></span>
               </span>
-              <span className="font-semibold">
-                Disponible pour nouveaux projets
-              </span>
+              <span className="font-semibold">{heroText.available}</span>
             </div>
             <div className="space-y-4">
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                <span className="block">Expert</span>
+                <span className="block">{heroText.title1}</span>
                 <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent whitespace-nowrap">
-                  Django & DevOps
+                  {heroText.title2}
                 </span>
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
-                Développeur fullstack indépendant, je conçois et maintiens des
-                applications critiques prêtes pour la production avec une
-                approche DevOps moderne.
+                {heroText.description}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -83,7 +88,7 @@ export function HeroSection() {
               <ProjectsButton />
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-8">
-              {stats.map((stat, index) => (
+              {heroText.stats.map((stat, index) => (
                 <StatsCard key={index} value={stat.value} label={stat.label} />
               ))}
             </div>

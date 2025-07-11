@@ -1,27 +1,27 @@
 "use client"
 
-import { Navigation } from "../components/Navigation"
-import { HeroSection } from "../components/HeroSection"
-import ServicesSection from "../components/ServicesSection"
-import TechStack from "../components/TechStack"
-import ProjectsSection from "../components/ProjectsSection"
-import AboutSection from "../components/AboutSection"
-import ContactSection from "../components/ContactSection"
-import { Footer } from "../components/Footer"
+import {Navigation} from "@/app/sections/Navigation"
+import TechStack from "@/app/sections/TechStack"
+import {Footer} from "@/app/sections/Footer"
+import {HeroSection} from "@/app/sections/Hero";
+import ServicesSection from "@/app/sections/Services";
+import ProjectsSection from "@/app/sections/Projects";
+import AboutSection from "@/app/sections/About";
+import ContactSection from "@/app/sections/Contact";
 
 export default function Home() {
-  return (
-    <>
-      <Navigation />
-      <main className="mx-auto">
-        <HeroSection />
-        <ServicesSection />
-        <TechStack />
-        <ProjectsSection />
-        <AboutSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </>
-  )
+    return (
+        <>
+            <Navigation/>
+            <main className="mx-auto">
+                <HeroSection/>
+                <ServicesSection/>
+                <TechStack/>
+                <ProjectsSection/>
+                <AboutSection/>
+                <ContactSection/>
+            </main>
+            <Footer/>
+        </>
+    )
 }

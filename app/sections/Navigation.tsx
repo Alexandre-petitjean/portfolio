@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Home, Briefcase, GraduationCap, Code, User, Mail, Menu, X } from "lucide-react"
-import { ThemeToggle } from "./ThemeToggle"
+import {ThemeToggle} from "@/app/components/ThemeToggle";
 
 export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)

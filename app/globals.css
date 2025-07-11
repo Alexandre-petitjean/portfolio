@@ -17,49 +17,20 @@
 }
 
 @layer base {
-  * {
-    @apply border-gray-200 dark:border-gray-700;
-  }
-  
-  body {
-    @apply bg-gradient-to-br from-gray-50 via-white to-primary-50 dark:from-gray-900 dark:via-gray-800 dark:to-primary-900 transition-colors duration-300;
-  }
+    * {
+        @apply border-gray-200 dark:border-gray-700;
+    }
+
+    body {
+        @apply bg-gradient-to-br from-gray-50 via-white to-primary-50 dark:from-gray-900 dark:via-gray-800 dark:to-primary-900 transition-colors duration-300;
+    }
 }
 
 /* Scroll behavior */
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
-/* Custom animations for typing effect */
-@keyframes typing-command-1 {
-  from { width: 0 }
-  to { width: 25ch; }
-}
-
-@keyframes typing-command-2 {
-  from { width: 0 }
-  to { width: 30ch; }
-}
-
-.typing-command {
-  border-right: 2px solid #4ade80;
-  animation: typing-command-1 1.5s steps(25, end);
-  animation-delay: 0.5s;
-  width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  animation-fill-mode: forwards;
-  display: inline-block;
-}
-
-.typing-command-2 {
-  border-right: 2px solid #4ade80;
-  animation: typing-command-2 1.8s steps(30, end);
-  animation-delay: 4.2s;
-  width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  animation-fill-mode: forwards;
-  display: inline-block;
+.terminal-result {
+    @apply text-primary-600 dark:text-primary-400 font-semibold;
 }

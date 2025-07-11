@@ -1,4 +1,4 @@
-import { Server, Cloud, GraduationCap, Sparkles } from "lucide-react"
+import { Server, Cloud, GraduationCap, Sparkles } from "lucide-react";
 
 const techStack = [
   "Django",
@@ -13,27 +13,38 @@ const techStack = [
   "Redis",
   "AWS",
   "Poetry",
-]
+];
 
 export default function TechStack() {
   return (
-    <section id="skills" className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      id="skills"
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-gray-900/5 dark:bg-white/5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0)', backgroundSize: '20px 20px' }}></div>
+        <div
+          className="absolute inset-0 bg-gray-900/5 dark:bg-white/5"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0)",
+            backgroundSize: "20px 20px",
+          }}
+        ></div>
       </div>
 
       <div className="relative max-w-screen-2xl mx-auto px-6 lg:px-12 py-20 w-full">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-            Stack 
+            Stack
             <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">
               technique
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Technologies maîtrisées pour vos projets critiques avec une expertise approfondie
+            Technologies maîtrisées pour vos projets critiques avec une
+            expertise approfondie
           </p>
         </div>
 
@@ -56,25 +67,33 @@ export default function TechStack() {
               {/* Skills List */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">Django, Django REST Framework</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    Django, Django REST Framework
+                  </span>
                   <span className="px-3 py-1 bg-primary-500/20 text-primary-700 dark:text-primary-300 text-sm font-semibold rounded-full border border-primary-400/30">
                     Expert
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">Python, SQL/PLSQL</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    Python, SQL/PLSQL
+                  </span>
                   <span className="px-3 py-1 bg-primary-500/20 text-primary-700 dark:text-primary-300 text-sm font-semibold rounded-full border border-primary-400/30">
                     Expert
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">Celery, RabbitMQ, Redis</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    Celery, RabbitMQ, Redis
+                  </span>
                   <span className="px-3 py-1 bg-blue-500/20 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full border border-blue-400/30">
                     Avancé
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">PostgreSQL, MySQL/MariaDB</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    PostgreSQL, MySQL/MariaDB
+                  </span>
                   <span className="px-3 py-1 bg-blue-500/20 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full border border-blue-400/30">
                     Avancé
                   </span>
@@ -100,25 +119,33 @@ export default function TechStack() {
               {/* Skills List */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">Docker, Docker Compose</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    Docker, Docker Compose
+                  </span>
                   <span className="px-3 py-1 bg-primary-500/20 text-primary-700 dark:text-primary-300 text-sm font-semibold rounded-full border border-primary-400/30">
                     Expert
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">GitLab CI/CD, Jenkins</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    GitLab CI/CD, Jenkins
+                  </span>
                   <span className="px-3 py-1 bg-blue-500/20 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full border border-blue-400/30">
                     Avancé
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">Linux, monitoring</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    Linux, monitoring
+                  </span>
                   <span className="px-3 py-1 bg-blue-500/20 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full border border-blue-400/30">
                     Avancé
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">Prometheus, Grafana</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    Prometheus, Grafana
+                  </span>
                   <span className="px-3 py-1 bg-blue-500/20 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full border border-blue-400/30">
                     Avancé
                   </span>
@@ -144,25 +171,33 @@ export default function TechStack() {
               {/* Skills List */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">Agile/Scrum, Clean Code</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    Agile/Scrum, Clean Code
+                  </span>
                   <span className="px-3 py-1 bg-primary-500/20 text-primary-700 dark:text-primary-300 text-sm font-semibold rounded-full border border-primary-400/30">
                     Expert
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">TDD, Documentation</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    TDD, Documentation
+                  </span>
                   <span className="px-3 py-1 bg-blue-500/20 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full border border-blue-400/30">
                     Avancé
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">Git, GitLab, PyCharm</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    Git, GitLab, PyCharm
+                  </span>
                   <span className="px-3 py-1 bg-blue-500/20 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full border border-blue-400/30">
                     Avancé
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-800/30 group-hover:bg-gray-200 dark:group-hover:bg-gray-700/30 transition-colors">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">Flutter, React</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    Flutter, React
+                  </span>
                   <span className="px-3 py-1 bg-gray-500/20 text-gray-600 dark:text-gray-400 text-sm font-semibold rounded-full border border-gray-400/30">
                     Notions
                   </span>
@@ -180,16 +215,23 @@ export default function TechStack() {
               <Sparkles className="w-full h-full" />
             </div>
             <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-              Expertise <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">approfondie</span>
+              Expertise{" "}
+              <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">
+                approfondie
+              </span>
             </h3>
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl mx-auto">
-              <strong className="text-gray-900 dark:text-white">Plus de 8 ans d'expérience</strong> dans le développement d'applications critiques. 
-              Je maîtrise l'ensemble de la chaîne technique, de la conception à la mise en production, 
-              en passant par l'optimisation des performances et la sécurité.
+              <strong className="text-gray-900 dark:text-white">
+                Plus de 8 ans d'expérience
+              </strong>{" "}
+              dans le développement d'applications critiques. Je maîtrise
+              l'ensemble de la chaîne technique, de la conception à la mise en
+              production, en passant par l'optimisation des performances et la
+              sécurité.
             </p>
           </div>
         </div>
       </div>
     </section>
-  )
-} 
+  );
+}

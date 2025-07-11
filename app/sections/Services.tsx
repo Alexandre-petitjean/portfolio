@@ -1,24 +1,35 @@
-import { Settings, Lightbulb, Rocket, Users } from "lucide-react"
+import { Settings, Lightbulb, Rocket, Users } from "lucide-react";
 
 export default function ServicesSection() {
   return (
-    <section id="offers" className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      id="offers"
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-gray-900/5 dark:bg-white/5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0)', backgroundSize: '20px 20px' }}></div>
+        <div
+          className="absolute inset-0 bg-gray-900/5 dark:bg-white/5"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0)",
+            backgroundSize: "20px 20px",
+          }}
+        ></div>
       </div>
 
       <div className="relative max-w-screen-2xl mx-auto px-6 lg:px-12 py-20 w-full">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-            Ce que je 
+            Ce que je
             <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">
               propose
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Des solutions techniques adaptées à vos enjeux business avec une expertise Django et DevOps
+            Des solutions techniques adaptées à vos enjeux business avec une
+            expertise Django et DevOps
           </p>
         </div>
 
@@ -35,7 +46,8 @@ export default function ServicesSection() {
                 Développement Django
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Applications web robustes, APIs REST performantes et intégrations complexes
+                Applications web robustes, APIs REST performantes et
+                intégrations complexes
               </p>
             </div>
           </div>
@@ -51,7 +63,8 @@ export default function ServicesSection() {
                 Conseil technique
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Architecture logicielle, clean code et résolution de dette technique
+                Architecture logicielle, clean code et résolution de dette
+                technique
               </p>
             </div>
           </div>
@@ -97,16 +110,22 @@ export default function ServicesSection() {
               <Settings className="w-full h-full" />
             </div>
             <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-              Mon <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">approche</span>
+              Mon{" "}
+              <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">
+                approche
+              </span>
             </h3>
             <p className="text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl mx-auto">
-              Je peux travailler seul ou en collaboration avec vos équipes existantes. 
-              Mon objectif est toujours le même : <strong className="text-gray-900 dark:text-white">livrer du code robuste, compréhensible, 
-              bien intégré</strong> dans vos processus métier et technique.
+              Je peux travailler seul ou en collaboration avec vos équipes
+              existantes. Mon objectif est toujours le même :{" "}
+              <strong className="text-gray-900 dark:text-white">
+                livrer du code robuste, compréhensible, bien intégré
+              </strong>{" "}
+              dans vos processus métier et technique.
             </p>
           </div>
         </div>
       </div>
     </section>
-  )
-} 
+  );
+}

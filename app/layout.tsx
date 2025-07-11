@@ -1,36 +1,41 @@
-import type {Metadata} from "next";
-import {Geist, Geist_Mono} from "next/font/google";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import {ThemeProvider} from "next-themes";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-    title: "Alexandre Petitjean - Expert Django & DevOps",
-    description: "Développeur fullstack indépendant spécialisé en Django et DevOps. Applications critiques prêtes pour la production.",
+  title: "Alexandre Petitjean - Expert Django & DevOps",
+  description:
+    "Développeur fullstack indépendant spécialisé en Django et DevOps. Applications critiques prêtes pour la production.",
 };
 
-export default function RootLayout({children,}: Readonly<{ children: React.ReactNode; }>) {
-    return (
-        <html lang="fr" suppressHydrationWarning>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased text-gray-900 dark:text-white`}>
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="fr" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-gray-900 dark:text-white`}
+      >
         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-            {children}
+          {children}
         </ThemeProvider>
-        </body>
-        </html>
-    );
+      </body>
+    </html>
+  );
 }

@@ -62,7 +62,7 @@ export function HeroSection() {
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 hero-bg-pattern"></div>
       </div>
-      <div className="relative max-w-screen-2xl mx-auto px-2 px-4 py-10">
+      <div className="relative max-w-screen-2xl mx-auto px-4 py-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-gray-900 dark:text-white space-y-8">
             <div className="inline-flex items-center space-x-2 bg-primary-500/20 dark:bg-primary-500/30 backdrop-blur-sm text-primary-800 dark:text-white px-4 py-2 rounded-full text-sm font-medium border border-primary-400/50">

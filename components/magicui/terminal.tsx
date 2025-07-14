@@ -20,7 +20,10 @@ export const AnimatedSpan = ({
     initial={{ opacity: 0, y: -5 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.3, delay: delay / 1000 }}
-    className={cn("grid text-sm font-normal tracking-tight", className)}
+    className={cn(
+      "motion-safe:grid motion-safe:text-sm motion-safe:font-normal motion-safe:tracking-tight",
+      className,
+    )}
     {...props}
   >
     {children}
@@ -43,10 +46,6 @@ export const TypingAnimation = ({
   as: Component = "span",
   ...props
 }: TypingAnimationProps) => {
-  if (typeof children !== "string") {
-    throw new Error("TypingAnimation: children must be a string. Received:");
-  }
-
   const MotionComponent = motion.create(Component, {
     forwardMotionProps: true,
   });

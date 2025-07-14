@@ -1,4 +1,4 @@
-import { Home, Briefcase, GraduationCap, Code, User } from "lucide-react";
+import { Home, Briefcase, GraduationCap, Code, User, Mail } from "lucide-react";
 
 export const navItems = [
   { href: "#hero", i18nKey: "nav.home", icon: Home },
@@ -6,4 +6,5 @@ export const navItems = [
   { href: "#skills", i18nKey: "nav.skills", icon: GraduationCap },
   { href: "#projets", i18nKey: "nav.projects", icon: Code },
   { href: "#about", i18nKey: "nav.about", icon: User },
+  { href: "#contact", i18nKey: "nav.contact", icon: Mail, isButton: true },
 ];

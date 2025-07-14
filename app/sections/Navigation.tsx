@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
+import LanguageSwitcher from "@/app/components/LanguageSwitcher";
 
 export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -37,13 +38,13 @@ export function Navigation() {
         ></div>
       </div>
       <div className="relative max-w-screen-2xl mx-auto px-6 lg:px-12 py-4">
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between w-full">
+          {/* Logo / Titre */}
           <div className="font-bold text-xl bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
             Alexandre Petitjean
           </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8 text-sm">
+          {/* Menu de navigation (desktop) */}
+          <div className="hidden md:flex items-center space-x-8 text-sm flex-1 justify-center">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -55,38 +56,37 @@ export function Navigation() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 group-hover:w-full transition-all duration-200"></span>
               </a>
             ))}
-
-            <div className="w-px h-6 bg-gradient-to-b from-transparent via-primary-600/50 dark:via-primary-400/50 to-transparent"></div>
+          </div>
+          {/* Switch langue + thème + bouton contact */}
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             <ThemeToggle />
-            <div className="w-px h-6 bg-gradient-to-b from-transparent via-primary-600/50 dark:via-primary-400/50 to-transparent"></div>
-
             <a
               href="#contact"
-              className="group relative inline-flex items-center justify-center px-4 py-2 font-medium text-white transition-all duration-200 ease-out rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
+              className="group relative inline-flex items-center justify-center px-4 py-2 font-medium text-white transition-all duration-200 ease-out rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 bg-primary-600 hover:bg-primary-700 border border-primary-500"
             >
-              <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-0.5 translate-y-0.5 bg-primary-700 dark:bg-primary-800 group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"></span>
-              <span className="absolute inset-0 w-full h-full bg-primary-600 border border-primary-500 group-hover:bg-primary-500 rounded-lg"></span>
               <span className="relative flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
                 <span>Contact</span>
               </span>
             </a>
           </div>
+        </div>
 
-          {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-700 dark:text-white/90 hover:text-primary-600 dark:hover:text-primary-400 transition-colors p-2"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
+        {/* Mobile Navigation */}
+        <div className="md:hidden flex items-center space-x-2">
+          <LanguageSwitcher />
+          <ThemeToggle />
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-gray-700 dark:text-white/90 hover:text-primary-600 dark:hover:text-primary-400 transition-colors p-2"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
         </div>
 
         {/* Mobile Menu */}

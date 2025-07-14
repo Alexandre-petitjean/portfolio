@@ -6,8 +6,8 @@ import HeroTerminal from "@/app/components/hero/HeroTerminal";
 
 const heroText = {
   available: "Disponible pour nouveaux projets",
-  title1: "Expert",
-  title2: "Django & DevOps",
+  primaryTitle: "Expert",
+  secondaryTitle: "Django & DevOps",
   description:
     "Développeur fullstack indépendant, je conçois et maintiens des applications critiques prêtes pour la production avec une approche DevOps moderne.",
   contact: "Discutons de votre projet",
@@ -74,9 +74,9 @@ export function HeroSection() {
             </div>
             <div className="space-y-4">
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                <span className="block">{heroText.title1}</span>
+                <span className="block">{heroText.primaryTitle}</span>
                 <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent whitespace-nowrap">
-                  {heroText.title2}
+                  {heroText.secondaryTitle}
                 </span>
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">

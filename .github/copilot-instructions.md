@@ -1,0 +1,21 @@
+- Toujours privilégier l'utilisation de librairies existantes et reconnues, éviter de réinventer la roue.
+- Limiter au maximum les messages dans le chat, répondre de façon concise pour optimiser le nombre de tokens.
+- Pour chaque problème ou tâche, imaginer et considérer au moins 3 approches ou solutions différentes avant d'agir.
+- Respecter les conventions officielles React et Next.js (structure, hooks, server/client components).
+- Utiliser TypeScript pour la robustesse et l'autocomplétion.
+- Préférer les hooks React standards ou de la communauté (react-query, swr, etc.) pour la gestion de données.
+- Toujours gérer les erreurs côté client et serveur (try/catch, ErrorBoundary).
+- Optimiser le rendu (memo, useCallback, suspense, lazy loading, etc.).
+- Utiliser les outils Next.js pour le SEO (Head, metadata, sitemaps).
+- Privilégier l'accessibilité (a11y) et l'internationalisation (i18n).
+- Écrire des tests unitaires et d'intégration (Jest, Testing Library).
+- Documenter les composants et les hooks complexes.
+- Utiliser des outils de linting et de formatage (eslint, prettier).
+- Optimiser les images (next/image, webp, responsive) et implémenter la mise en cache appropriée.
+- Utiliser les outils de monitoring (Vercel Analytics, Lighthouse, Core Web Vitals).
+- Séparer la logique métier des composants UI (custom hooks, services).
+- Utiliser des patterns de composition plutôt que d'héritage.
+- Valider les entrées utilisateur (zod, yup) et implémenter la gestion d'état appropriée.
+- Configurer les variables d'environnement et la sécurité pour la production.
+- Utiliser Storybook pour les composants UI et les DevTools React.
+- Implémenter le pre-commit avec husky/lint-staged pour la qualité du code.

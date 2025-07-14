@@ -28,5 +28,6 @@ const messages = {
   "nav.skills": "Skills",
   "nav.projects": "Projects",
   "nav.about": "About",
+  "nav.contact": "Contact",
 };
 export default messages;

@@ -1,39 +1,55 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
-export function useAnimatedCounters() {
+interface AnimatedCountersReturn {
+  projectsCount: number;
+  yearsCount: number;
+  clientsCount: number;
+  ref: React.RefObject<HTMLDivElement | null>;
+}
+
+export function useAnimatedCounters(): AnimatedCountersReturn {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(ref, { once: true });
+
   const [projectsCount, setProjectsCount] = useState(0);
   const [yearsCount, setYearsCount] = useState(0);
   const [clientsCount, setClientsCount] = useState(0);
 
   useEffect(() => {
-    const animateCounter = (
-      target: number,
-      setter: (value: number) => void,
-      duration = 2000,
+    if (!isInView) return;
+
+    const animateValue = (
+      start: number,
+      end: number,
+      duration: number,
+      callback: (value: number) => void,
     ) => {
-      let start = 0;
-      const increment = target / (duration / 16);
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-          setter(target);
-          clearInterval(timer);
-        } else {
-          setter(Math.floor(start));
+      const startTime = performance.now();
+
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const current = start + (end - start) * easeOutQuart;
+
+        callback(Math.floor(current));
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
         }
-      }, 16);
+      };
+
+      requestAnimationFrame(animate);
     };
 
-    const timer = setTimeout(() => {
-      animateCounter(50, setProjectsCount);
-      animateCounter(8, setYearsCount);
-      animateCounter(25, setClientsCount);
-    }, 500);
+    animateValue(0, 50, 2000, setProjectsCount);
+    animateValue(0, 8, 2000, setYearsCount);
+    animateValue(0, 100, 2000, setClientsCount);
+  }, [isInView]);
 
-    return () => clearTimeout(timer);
-  }, []);
-
-  return { projectsCount, yearsCount, clientsCount };
+  return { projectsCount, yearsCount, clientsCount, ref };
 }

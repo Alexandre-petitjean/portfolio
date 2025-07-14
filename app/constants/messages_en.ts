@@ -23,5 +23,10 @@ const messages = {
   "terminal.current_status.command": "$ current_status",
   "terminal.current_status.result": "✅ Available for critical projects.",
   "languageSwitcher.ariaLabel": "Change language",
+  "nav.home": "Home",
+  "nav.services": "Services",
+  "nav.skills": "Skills",
+  "nav.projects": "Projects",
+  "nav.about": "About",
 };
 export default messages;

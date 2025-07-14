@@ -1,29 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Home,
-  Briefcase,
-  GraduationCap,
-  Code,
-  User,
-  Mail,
-  Menu,
-  X,
-} from "lucide-react";
+import { Mail, Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import LanguageSwitcher from "@/app/components/LanguageSwitcher";
+import { navItems } from "@/app/constants/navigation";
+import { useIntl } from "react-intl";
 
 export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const navItems = [
-    { href: "#hero", label: "Accueil", icon: Home },
-    { href: "#offers", label: "Services", icon: Briefcase },
-    { href: "#skills", label: "Compétences", icon: GraduationCap },
-    { href: "#projets", label: "Projets", icon: Code },
-    { href: "#about", label: "À propos", icon: User },
-  ];
+  const intl = useIntl();
 
   return (
     <nav className="fixed top-0 w-full bg-gradient-to-r from-white/95 via-gray-50/95 to-primary-50/95 dark:from-gray-900/95 dark:via-gray-800/95 dark:to-primary-900/95 backdrop-blur-md border-b border-primary-500/20 z-50">
@@ -52,7 +38,7 @@ export function Navigation() {
                 className="relative text-gray-700 dark:text-white/90 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-200 group flex items-center space-x-2"
               >
                 <item.icon className="w-4 h-4" />
-                <span>{item.label}</span>
+                <span>{intl.formatMessage({ id: item.i18nKey })}</span>
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 group-hover:w-full transition-all duration-200"></span>
               </a>
             ))}
@@ -101,7 +87,7 @@ export function Navigation() {
                   className="flex items-center space-x-3 text-gray-700 dark:text-white/90 hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2"
                 >
                   <item.icon className="w-5 h-5" />
-                  <span>{item.label}</span>
+                  <span>{intl.formatMessage({ id: item.i18nKey })}</span>
                 </a>
               ))}
               <a

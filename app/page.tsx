@@ -1,5 +1,3 @@
-"use client";
-
 import { Navigation } from "@/app/sections/Navigation";
 import TechStack from "@/app/sections/TechStack";
 import { Footer } from "@/app/sections/Footer";

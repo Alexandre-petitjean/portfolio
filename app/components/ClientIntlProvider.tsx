@@ -1,11 +1,12 @@
 "use client";
 import { IntlProvider } from "react-intl";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import messagesFr from "@/app/constants/messages_fr";
 import messagesEn from "@/app/constants/messages_en";
 import HtmlLangSync from "@/app/components/HtmlLangSync";
+import { ErrorBoundary } from "@/app/components/ErrorBoundary";
 
-export default function ClientIntlProvider({
+const ClientIntlProvider = memo(function ClientIntlProvider({
   children,
 }: {
   children: React.ReactNode;
@@ -24,12 +25,14 @@ export default function ClientIntlProvider({
       }
       setLocale(detected);
     }
+
     detectLang();
     setMounted(true);
-    // Écoute les changements de langue (custom event ou storage)
+
     const onLangChange = () => detectLang();
     window.addEventListener("languageChanged", onLangChange);
     window.addEventListener("storage", onLangChange);
+
     return () => {
       window.removeEventListener("languageChanged", onLangChange);
       window.removeEventListener("storage", onLangChange);
@@ -38,11 +41,13 @@ export default function ClientIntlProvider({
   if (!mounted) return null;
   const messages = locale === "en" ? messagesEn : messagesFr;
   return (
-    <>
+    <ErrorBoundary>
       <HtmlLangSync />
       <IntlProvider locale={locale} messages={messages} defaultLocale="fr">
         {children}
       </IntlProvider>
-    </>
+    </ErrorBoundary>
   );
-}
+});
+
+export default ClientIntlProvider;

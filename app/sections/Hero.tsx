@@ -4,9 +4,13 @@ import { MessageSquare, ArrowRight, Eye, ChevronDown } from "lucide-react";
 import { StatsCard } from "@/app/components/hero/StatsCard";
 import HeroTerminal from "@/app/components/hero/HeroTerminal";
 import { useIntl, FormattedMessage } from "react-intl";
+import { useAnimatedCounters } from "@/app/hooks/useAnimatedCounters";
 
 export function HeroSection() {
   const intl = useIntl();
+  const { projectsCount, yearsCount, clientsCount, ref } =
+    useAnimatedCounters();
+
   return (
     <section
       id="hero"
@@ -70,17 +74,20 @@ export function HeroSection() {
                 </span>
               </a>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-8">
+            <div
+              className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-8"
+              ref={ref}
+            >
               <StatsCard
-                value="5+"
+                value={`${yearsCount}+`}
                 label={intl.formatMessage({ id: "hero.stats.years" })}
               />
               <StatsCard
-                value="20+"
+                value={`${projectsCount}+`}
                 label={intl.formatMessage({ id: "hero.stats.projects" })}
               />
               <StatsCard
-                value="100%"
+                value={`${clientsCount}%`}
                 label={intl.formatMessage({ id: "hero.stats.satisfaction" })}
               />
             </div>

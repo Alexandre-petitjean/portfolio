@@ -23,5 +23,11 @@ const messages = {
     '> "Alexandre a sauvé notre sprint. Et notre budget." – un CTO rassuré',
   "terminal.current_status.command": "$ current_status",
   "terminal.current_status.result": "✅ Disponible pour projets critiques.",
+  "languageSwitcher.ariaLabel": "Changer la langue",
+  "nav.home": "Accueil",
+  "nav.services": "Services",
+  "nav.skills": "Compétences",
+  "nav.projects": "Projets",
+  "nav.about": "À propos",
 };
 export default messages;

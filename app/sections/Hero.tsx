@@ -32,7 +32,7 @@ export function HeroSection() {
               </span>
             </div>
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
                 <span className="block">
                   <FormattedMessage id="hero.primaryTitle" />
                 </span>

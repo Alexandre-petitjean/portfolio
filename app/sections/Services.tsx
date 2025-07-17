@@ -1,6 +1,11 @@
+"use client";
+
 import { Settings, Lightbulb, Rocket, Users } from "lucide-react";
+import { useIntl } from "react-intl";
 
 export default function ServicesSection() {
+  const intl = useIntl();
+
   return (
     <section
       id="offers"
@@ -22,14 +27,13 @@ export default function ServicesSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-            Ce que je
+            {intl.formatMessage({ id: "services.title" })}
             <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">
-              propose
+              {intl.formatMessage({ id: "services.description" })}
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Des solutions techniques adaptées à vos enjeux business avec une
-            expertise Django et DevOps
+            {intl.formatMessage({ id: "services.subtitle" })}
           </p>
         </div>
 
@@ -43,11 +47,10 @@ export default function ServicesSection() {
                 <Settings className="w-full h-full" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
-                Développement Django
+                {intl.formatMessage({ id: "services.django.title" })}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Applications web robustes, APIs REST performantes et
-                intégrations complexes
+                {intl.formatMessage({ id: "services.django.description" })}
               </p>
             </div>
           </div>
@@ -60,11 +63,10 @@ export default function ServicesSection() {
                 <Lightbulb className="w-full h-full" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
-                Conseil technique
+                {intl.formatMessage({ id: "services.consulting.title" })}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Architecture logicielle, clean code et résolution de dette
-                technique
+                {intl.formatMessage({ id: "services.consulting.description" })}
               </p>
             </div>
           </div>
@@ -77,10 +79,10 @@ export default function ServicesSection() {
                 <Rocket className="w-full h-full" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
-                DevOps & CI/CD
+                {intl.formatMessage({ id: "services.devops.title" })}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Docker, monitoring avancé et déploiements automatisés
+                {intl.formatMessage({ id: "services.devops.description" })}
               </p>
             </div>
           </div>
@@ -93,10 +95,10 @@ export default function ServicesSection() {
                 <Users className="w-full h-full" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
-                CTO as a Service
+                {intl.formatMessage({ id: "services.cto.title" })}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Direction technique stratégique pour startups et PME
+                {intl.formatMessage({ id: "services.cto.description" })}
               </p>
             </div>
           </div>
@@ -110,18 +112,10 @@ export default function ServicesSection() {
               <Settings className="w-full h-full" />
             </div>
             <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-              Mon{" "}
-              <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">
-                approche
-              </span>
+              {intl.formatMessage({ id: "services.approach.title" })}
             </h3>
             <p className="text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl mx-auto">
-              Je peux travailler seul ou en collaboration avec vos équipes
-              existantes. Mon objectif est toujours le même :{" "}
-              <strong className="text-gray-900 dark:text-white">
-                livrer du code robuste, compréhensible, bien intégré
-              </strong>{" "}
-              dans vos processus métier et technique.
+              {intl.formatMessage({ id: "services.approach.description" })}
             </p>
           </div>
         </div>

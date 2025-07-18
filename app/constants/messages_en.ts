@@ -65,5 +65,6 @@ const messages = {
   "skills.level.expert": "Expert",
   "skills.level.advanced": "Advanced",
   "skills.level.intermediate": "Intermediate",
+  "skills.level.label": "Level",
 } as const;
 export default messages;

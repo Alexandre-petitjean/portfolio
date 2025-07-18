@@ -16,7 +16,7 @@ export const SKILL_CATEGORIES = {
       { name: "SQL/PLSQL", level: "expert" as const },
       { name: "Celery", level: "advanced" as const },
       { name: "RabbitMQ", level: "advanced" as const },
-      { name: "PostgreSQL et MariaDB", level: "advanced" as const },
+      { name: "PostgreSQL & MariaDB", level: "advanced" as const },
     ] satisfies SkillItemData[],
   },
   frontend: {
@@ -46,7 +46,7 @@ export const SKILL_CATEGORIES = {
       { name: "Jenkins", level: "advanced" as const },
       { name: "Linux", level: "advanced" as const },
       { name: "Supervision & Monitoring", level: "advanced" as const },
-      { name: "Déploiement d'applications", level: "advanced" as const },
+      { name: "Application Deployment", level: "advanced" as const },
     ] satisfies SkillItemData[],
   },
   methodology: {

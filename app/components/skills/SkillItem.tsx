@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { useIntl } from "react-intl";
 import { useSkillLevelConfig } from "@/app/hooks/useSkillLevel";
 import type { SkillLevel } from "@/app/types/skills";
 
@@ -13,6 +14,7 @@ const SkillItem = memo(function SkillItem({
   level,
   className = "",
 }: SkillItemProps) {
+  const intl = useIntl();
   const config = useSkillLevelConfig(level);
   const IconComponent = config.icon;
 
@@ -28,10 +30,10 @@ const SkillItem = memo(function SkillItem({
         </h4>
         <div
           className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium border ${config.bg} ${config.color} ${config.border}`}
-          aria-label={`Niveau: ${config.label}`}
+          aria-label={`${intl.formatMessage({ id: "skills.level.label" })}: ${config.label}`}
         >
-          <IconComponent className="w-4 h-4" aria-hidden="true" />
-          <span>{config.label}</span>
+          <IconComponent className="w-3 h-3" />
+          <span className="font-medium">{config.label}</span>
         </div>
       </div>
     </div>

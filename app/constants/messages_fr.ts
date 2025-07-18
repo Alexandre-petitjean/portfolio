@@ -64,6 +64,7 @@ const messages = {
   "skills.level.expert": "Expert",
   "skills.level.advanced": "Avancé",
   "skills.level.intermediate": "Notions",
+  "skills.level.label": "Niveau",
   "skills.tools.title": "Outils",
   "skills.tools.uml_bpmn": "UML & BPMN",
   "skills.tools.git": "Contrôle de version (Git)",

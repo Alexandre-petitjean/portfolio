@@ -65,6 +65,7 @@ export default function TechStack() {
 
             <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
               {intl.formatMessage({ id: "skills.experience.title" })}
+              <span className="block w-20 h-1 bg-primary-500 mx-auto mt-4 rounded-full" />
             </h2>
 
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl mx-auto">

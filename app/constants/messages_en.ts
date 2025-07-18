@@ -55,14 +55,15 @@ const messages = {
   "skills.subtitle":
     "Technologies mastered for your critical projects with deep expertise",
   "skills.backend.title": "Backend & API",
+  "skills.frontend.title": "Frontend & UI",
   "skills.devops.title": "DevOps & Infrastructure",
   "skills.methodology.title": "Methodology & Tools",
+  "skills.tools.title": "Tools",
   "skills.experience.title": "Deep Expertise",
   "skills.experience.description":
-    "Over 8 years of experience in developing critical applications. I master the entire technical chain, from design to production, including performance optimization and security.",
+    "8+ years of experience developing mission-critical applications. I master the entire technical stack, from design to production deployment, including performance optimization and security.",
   "skills.level.expert": "Expert",
   "skills.level.advanced": "Advanced",
   "skills.level.intermediate": "Intermediate",
-  "skills.tools.title": "Tools",
 } as const;
 export default messages;

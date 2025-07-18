@@ -1,9 +1,9 @@
-import { Server, Cloud, GraduationCap, Wrench } from "lucide-react";
+import { Server, Cloud, GraduationCap, Wrench, Monitor } from "lucide-react";
 import type { SkillItemData } from "@/app/types/skills";
 
 export const SKILL_CATEGORIES = {
-  technologies: {
-    id: "technologies",
+  backend: {
+    id: "backend",
     titleKey: "skills.backend.title",
     icon: Server,
     accentColors: {
@@ -12,13 +12,25 @@ export const SKILL_CATEGORIES = {
     },
     skills: [
       { name: "Python", level: "expert" as const },
-      { name: "JavaScript", level: "advanced" as const },
-      { name: "Dart & Flutter", level: "intermediate" as const },
-      { name: "SQL/PLSQL", level: "expert" as const },
       { name: "Django", level: "expert" as const },
+      { name: "SQL/PLSQL", level: "expert" as const },
       { name: "Celery", level: "advanced" as const },
       { name: "RabbitMQ", level: "advanced" as const },
+      { name: "PostgreSQL et MariaDB", level: "advanced" as const },
+    ] satisfies SkillItemData[],
+  },
+  frontend: {
+    id: "frontend",
+    titleKey: "skills.frontend.title",
+    icon: Monitor,
+    accentColors: {
+      primary: "from-indigo-500",
+      secondary: "to-indigo-600",
+    },
+    skills: [
+      { name: "JavaScript", level: "advanced" as const },
       { name: "React", level: "intermediate" as const },
+      { name: "Dart & Flutter", level: "intermediate" as const },
     ] satisfies SkillItemData[],
   },
   devops: {
@@ -35,7 +47,6 @@ export const SKILL_CATEGORIES = {
       { name: "Linux", level: "advanced" as const },
       { name: "Supervision & Monitoring", level: "advanced" as const },
       { name: "Déploiement d'applications", level: "advanced" as const },
-      { name: "PostgreSQL/MariaDB", level: "advanced" as const },
     ] satisfies SkillItemData[],
   },
   methodology: {
@@ -49,7 +60,7 @@ export const SKILL_CATEGORIES = {
     skills: [
       { name: "Agile/Scrum", level: "expert" as const },
       { name: "Clean Code", level: "expert" as const },
-      { name: "UML et BPMN", level: "advanced" as const },
+      { name: "UML & BPMN", level: "advanced" as const },
     ] satisfies SkillItemData[],
   },
   tools: {

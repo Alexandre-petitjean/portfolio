@@ -65,5 +65,15 @@ const messages = {
   "skills.level.advanced": "Avancé",
   "skills.level.intermediate": "Notions",
   "skills.tools.title": "Outils",
+  "skills.tools.uml_bpmn": "UML & BPMN",
+  "skills.tools.git": "Contrôle de version (Git)",
+  "skills.tools.docker": "Docker & Conteneurisation",
+  "skills.tools.cicd": "Pipelines CI/CD",
+  "skills.tools.monitoring": "Supervision & Monitoring",
+  "skills.tools.testing": "Tests & Qualité",
+  "skills.tools.agile": "Méthodologies Agiles",
+  "skills.tools.documentation": "Documentation technique",
+  "skills.tools.communication": "Outils de communication",
+  "skills.frontend.title": "Frontend & UI",
 } as const;
 export default messages;

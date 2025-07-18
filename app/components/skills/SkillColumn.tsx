@@ -1,47 +1,66 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
+import { sortSkillsByLevel } from "@/app/hooks/useSkillLevel";
 import SkillItem from "./SkillItem";
+import type { SkillItemData } from "@/app/types/skills";
 
 interface SkillColumnProps {
   title: string;
   icon: React.ReactNode;
-  accent: string;
-  skills: { name: string; level: "expert" | "advanced" | "intermediate" }[];
+  accentColors: {
+    primary: string;
+    secondary: string;
+  };
+  skills: SkillItemData[];
+  "aria-label"?: string;
 }
 
 const SkillColumn = memo(function SkillColumn({
   title,
   icon,
-  accent,
+  accentColors,
   skills,
+  "aria-label": ariaLabel,
 }: SkillColumnProps) {
-  const sortedSkills = skills.sort((a, b) => {
-    const levels = ["expert", "advanced", "intermediate", "notion"];
-    return levels.indexOf(a.level) - levels.indexOf(b.level);
-  });
+  const sortedSkills = useMemo(() => sortSkillsByLevel(skills), [skills]);
+
+  const gradientLineClass = useMemo(
+    () =>
+      `absolute left-8 top-16 bottom-0 w-0.5 bg-gradient-to-b ${accentColors.primary} to-transparent`,
+    [accentColors.primary],
+  );
+
+  const iconContainerClass = useMemo(
+    () =>
+      `flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${accentColors.primary} ${accentColors.secondary} flex items-center justify-center shadow-lg`,
+    [accentColors.primary, accentColors.secondary],
+  );
 
   return (
-    <div className="relative">
-      <div
-        className={`absolute left-8 top-16 bottom-0 w-0.5 bg-gradient-to-b ${accent.replace("bg-gradient-to-br", "from")} to-transparent`}
-      ></div>
+    <section className="relative" aria-label={ariaLabel || `${title} skills`}>
+      <div className={gradientLineClass} aria-hidden="true" />
+
       <div className="relative flex gap-6 mb-12">
-        <div
-          className={`flex-shrink-0 w-16 h-16 rounded-2xl ${accent} flex items-center justify-center shadow-lg`}
-        >
+        <div className={iconContainerClass} aria-hidden="true">
           {icon}
         </div>
+
         <div className="flex-1 min-w-0">
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
             {title}
           </h3>
-          <div className="space-y-4">
-            {sortedSkills.map((skill, index) => (
-              <SkillItem key={index} name={skill.name} level={skill.level} />
+
+          <ul className="space-y-4" role="list">
+            {sortedSkills.map((skill) => (
+              <SkillItem
+                key={`${skill.name}-${skill.level}`}
+                name={skill.name}
+                level={skill.level}
+              />
             ))}
-          </div>
+          </ul>
         </div>
       </div>
-    </div>
+    </section>
   );
 });
 

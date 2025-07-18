@@ -49,5 +49,23 @@ const messages = {
   "services.consulting.title": "Technical Consulting",
   "services.consulting.description":
     "Strategic advice to align technology with business goals",
-};
+  "skills.badge": "Skills",
+  "skills.title": "Technical ",
+  "skills.description": "Stack",
+  "skills.subtitle":
+    "Technologies mastered for your critical projects with deep expertise",
+  "skills.backend.title": "Backend & API",
+  "skills.frontend.title": "Frontend & UI",
+  "skills.devops.title": "DevOps & Infrastructure",
+  "skills.methodology.title": "Methodology",
+  "skills.tools.title": "Tools",
+  "skills.experience.title": "Deep Expertise",
+  "skills.experience.description":
+    "8+ years of experience developing mission-critical applications. I master the entire technical stack, from design to production deployment, including performance optimization and security.",
+  "skills.level.expert": "Expert",
+  "skills.level.advanced": "Advanced",
+  "skills.level.intermediate": "Intermediate",
+  "skills.level.beginner": "Beginner",
+  "skills.level.label": "Level",
+} as const;
 export default messages;

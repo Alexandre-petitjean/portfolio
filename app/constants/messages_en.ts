@@ -29,6 +29,7 @@ const messages = {
   "nav.projects": "Projects",
   "nav.about": "About",
   "nav.contact": "Contact",
+  "services.badge": "Services",
   "services.title": "What I ",
   "services.description": "offer",
   "services.subtitle":
@@ -48,8 +49,5 @@ const messages = {
   "services.consulting.title": "Technical Consulting",
   "services.consulting.description":
     "Strategic advice to align technology with business goals",
-  "services.training.title": "Training & Workshops",
-  "services.training.description":
-    "Empowering teams with hands-on sessions and best practices",
 };
 export default messages;

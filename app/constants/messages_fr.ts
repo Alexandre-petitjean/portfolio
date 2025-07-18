@@ -50,5 +50,17 @@ const messages = {
   "services.approach.title": "Mon approche",
   "services.approach.description":
     "Je peux travailler seul ou en collaboration avec vos équipes existantes. Mon objectif est toujours le même : livrer du code robuste, compréhensible, bien intégré dans vos processus métier et technique.",
+  "skills.badge": "Compétences",
+  "skills.title": "Stack ",
+  "skills.description": "technique",
+  "skills.subtitle": "Technologies maîtrisées pour vos projets critiques avec une expertise approfondie",
+  "skills.backend.title": "Backend & API",
+  "skills.devops.title": "DevOps & Infrastructure",
+  "skills.methodology.title": "Méthodologie & Outils",
+  "skills.experience.title": "Expertise approfondie",
+  "skills.experience.description": "Plus de 8 ans d'expérience dans le développement d'applications critiques. Je maîtrise l'ensemble de la chaîne technique, de la conception à la mise en production, en passant par l'optimisation des performances et la sécurité.",
+  "skills.level.expert": "Expert",
+  "skills.level.advanced": "Avancé",
+  "skills.level.intermediate": "Notions",
 };
 export default messages;

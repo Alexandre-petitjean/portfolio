@@ -47,7 +47,18 @@ const messages = {
   "services.devops.description":
     "Infrastructure automation, CI/CD pipelines, and cloud optimization",
   "services.consulting.title": "Technical Consulting",
-  "services.consulting.description":
-    "Strategic advice to align technology with business goals",
+  "services.consulting.description": "Strategic advice to align technology with business goals",
+  "skills.badge": "Skills",
+  "skills.title": "Technical ",
+  "skills.description": "Stack",
+  "skills.subtitle": "Technologies mastered for your critical projects with deep expertise",
+  "skills.backend.title": "Backend & API",
+  "skills.devops.title": "DevOps & Infrastructure",
+  "skills.methodology.title": "Methodology & Tools",
+  "skills.experience.title": "Deep Expertise",
+  "skills.experience.description": "Over 8 years of experience in developing critical applications. I master the entire technical chain, from design to production, including performance optimization and security.",
+  "skills.level.expert": "Expert",
+  "skills.level.advanced": "Advanced",
+  "skills.level.intermediate": "Intermediate",
 };
 export default messages;

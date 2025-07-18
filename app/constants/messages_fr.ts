@@ -30,6 +30,7 @@ const messages = {
   "nav.projects": "Projets",
   "nav.about": "À propos",
   "nav.contact": "Contact",
+  "services.badge": "Services",
   "services.title": "Ce que je ",
   "services.description": "propose",
   "services.subtitle":

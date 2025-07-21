@@ -1,126 +1,313 @@
-import { Lightbulb, MessageSquare, ArrowRight } from "lucide-react";
-import { ProjectCard } from "@/app/components/ProjectCard";
+"use client";
 
-export default function ProjectsSection() {
-  return (
-    <section
-      id="projets"
-      className="relative min-h-screen flex items-center overflow-hidden"
-    >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0 bg-gray-900/5 dark:bg-white/5"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0)",
-            backgroundSize: "20px 20px",
-          }}
-        ></div>
+import { useState, useMemo, Suspense } from "react";
+import { motion, type Variants } from "framer-motion";
+import dynamic from "next/dynamic";
+import { Project } from "@/app/types/project";
+import { useProjects } from "@/app/hooks/useProjects";
+import { useProjectFilter } from "@/app/hooks/useProjectFilter";
+import ErrorBoundary from "@/app/components/ErrorBoundary";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Loader2 } from "lucide-react";
+
+// Lazy loading des composants lourds
+const ProjectFilter = dynamic(
+  () => import("@/app/components/projects/ProjectFilter"),
+  {
+    loading: () => <div className="h-20 bg-muted/50 animate-pulse rounded" />,
+  },
+);
+
+const ProjectGrid = dynamic(
+  () => import("@/app/components/projects/ProjectGrid"),
+  {
+    loading: () => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div key={i} className="h-80 bg-muted/50 animate-pulse rounded-lg" />
+        ))}
       </div>
+    ),
+  },
+);
 
-      <div className="relative max-w-screen-2xl mx-auto px-6 lg:px-12 py-20 w-full">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-            Projets
-            <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">
-              récents
-            </span>
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Applications critiques en production avec un impact métier mesurable
-          </p>
-        </div>
+const ProjectModal = dynamic(
+  () => import("@/app/components/projects/ProjectModal"),
+  {
+    ssr: false,
+  },
+);
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
-          {/* Project 1: CRM Opérateur Télécom */}
-          <ProjectCard
-            title="CRM Opérateur Télécom"
-            description="Projet legacy critique (10+ ans) avec forts enjeux métier. Développement de nouvelles fonctionnalités, corrections de bugs critiques, et montée de version progressive."
-            iconPath="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-            iconColor="red"
-            technologies={["Django", "DRF", "MySQL", "Docker", "RabbitMQ"]}
-            isCompleted={false}
-          />
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] },
+  },
+};
 
-          {/* Project 2: CRM Gestion de Patrimoine */}
-          <ProjectCard
-            title="CRM Gestion de Patrimoine"
-            description="Développement fullstack solo avec rôle de dev, PO et lead technique. Mise en production complète avec monitoring et scaling."
-            iconPath="M3.75 21h16.5M4.5 3h15l-.75 18h-13.5L4.5 3z M9 8.25h6M9 11.25h6M9 14.25h6M9 17.25h6"
-            iconColor="primary"
-            technologies={["Django", "PostgreSQL", "Redis", "GitLab CI"]}
-            isCompleted={true}
-            successMetric={{
-              text: "70% du business migré sur l'outil",
-              icon: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-              color: "primary",
-            }}
-          />
+export default function Projects() {
+  const { projects, featuredProjects, loading, error } = useProjects();
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const [activeTab, setActiveTab] = useState("all");
 
-          {/* Project 3: Application Logistique Multisite */}
-          <ProjectCard
-            title="Logistique Multisite"
-            description="Refonte complète d'un outil de gestion de stock legacy + développement d'APIs + applications mobiles Flutter."
-            iconPath="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m14.25 4.5v-4.5a1.125 1.125 0 00-1.125-1.125h-9.375m12 6.75h4.5a.75.75 0 00.75-.75v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 00-.75.75V18a.75.75 0 00.75.75z"
-            iconColor="blue"
-            technologies={[
-              "Django",
-              "DRF",
-              "Flutter",
-              "MySQL",
-              "Prometheus",
-              "Grafana",
-            ]}
-            isCompleted={true}
-            successMetric={{
-              text: "Déploiement sur 20+ sites industriels",
-              icon: "M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z",
-              color: "blue",
-            }}
-          />
-        </div>
+  const {
+    filteredProjects,
+    filters,
+    searchTerm,
+    setSearchTerm,
+    updateFilter,
+    clearFilters,
+    activeFiltersCount,
+  } = useProjectFilter(projects);
 
-        {/* Call to Action */}
-        <div className="relative p-8 lg:p-12 bg-gradient-to-br from-primary-50/70 to-white/70 dark:from-primary-900/30 dark:to-gray-900/30 backdrop-blur-sm border border-primary-500/30 rounded-3xl text-center">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent rounded-3xl"></div>
-          <div className="relative">
-            <div className="flex items-center justify-center space-x-4 mb-6">
-              <div className="w-12 h-12 text-primary-600 dark:text-primary-400">
-                <Lightbulb className="w-full h-full" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                Vous avez un
-                <span className="bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">
-                  projet en tête ?
-                </span>
-              </h3>
-            </div>
-            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8">
-              Ces projets reflètent mon approche :{" "}
-              <strong className="text-gray-900 dark:text-white">
-                comprendre les enjeux métier
-              </strong>
-              , concevoir des solutions robustes et assurer une mise en
-              production sans accroc.
-            </p>
-            <a
-              href="#contact"
-              className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 ease-out rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
-            >
-              <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-primary-700 dark:bg-primary-800 group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"></span>
-              <span className="absolute inset-0 w-full h-full bg-primary-600 border-2 border-primary-500 group-hover:bg-primary-500 rounded-lg"></span>
-              <span className="relative flex items-center space-x-3">
-                <MessageSquare className="w-5 h-5" />
-                <span>Parlons de votre projet</span>
-                <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
-              </span>
-            </a>
+  // Technologies disponibles pour les filtres
+  const availableTechnologies = useMemo(() => {
+    const techs = new Set<string>();
+    projects.forEach((project: Project) => {
+      project.technologies.forEach((tech) => techs.add(tech.name));
+    });
+    return Array.from(techs).sort();
+  }, [projects]);
+
+  // Projets à afficher selon l'onglet actif
+  const displayedProjects = useMemo(() => {
+    let projectsToShow =
+      activeTab === "featured" ? featuredProjects : filteredProjects;
+
+    // Limiter l'affichage si showAll est false
+    if (!showAll && activeTab === "all") {
+      projectsToShow = projectsToShow.slice(0, 6);
+    }
+
+    return projectsToShow;
+  }, [activeTab, filteredProjects, featuredProjects, showAll]);
+
+  const hasMoreProjects =
+    activeTab === "all" && !showAll && filteredProjects.length > 6;
+
+  if (loading) {
+    return (
+      <section id="projects" className="py-20 bg-muted/50">
+        <div className="container mx-auto px-4">
+          <div
+            className="flex items-center justify-center py-20"
+            role="status"
+            aria-live="polite"
+          >
+            <Loader2 className="h-8 w-8 animate-spin" aria-hidden="true" />
+            <span className="ml-2">Chargement des projets...</span>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="projects" className="py-20 bg-muted/50">
+        <div className="container mx-auto px-4">
+          <div className="text-center py-20" role="alert">
+            <div className="text-destructive mb-4">{error}</div>
+            <Button onClick={() => window.location.reload()}>Réessayer</Button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <ErrorBoundary>
+      <motion.section
+        id="projects"
+        className="py-20 bg-muted/50"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        role="region"
+        aria-labelledby="projects-heading"
+      >
+        <div className="container mx-auto px-4">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <motion.h2
+              id="projects-heading"
+              className="text-3xl md:text-4xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              Mes Projets
+            </motion.h2>
+            <motion.p
+              className="text-lg text-muted-foreground max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              Découvrez une sélection de mes réalisations, des projets web
+              modernes aux applications mobiles innovantes.
+            </motion.p>
+          </div>
+
+          {/* Tabs */}
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full"
+          >
+            <div className="flex justify-center mb-8">
+              <TabsList
+                className="grid w-full max-w-md grid-cols-2"
+                role="tablist"
+              >
+                <TabsTrigger
+                  value="all"
+                  role="tab"
+                  aria-controls="all-projects"
+                >
+                  Tous les projets ({projects.length})
+                </TabsTrigger>
+                <TabsTrigger
+                  value="featured"
+                  role="tab"
+                  aria-controls="featured-projects"
+                >
+                  Mis en avant ({featuredProjects.length})
+                </TabsTrigger>
+              </TabsList>
+            </div>
+
+            <TabsContent
+              value="all"
+              className="space-y-8"
+              role="tabpanel"
+              id="all-projects"
+            >
+              {/* Filters */}
+              <Suspense
+                fallback={
+                  <div className="h-20 bg-muted/50 animate-pulse rounded" />
+                }
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <ProjectFilter
+                    filters={filters}
+                    searchTerm={searchTerm}
+                    onSearchChange={setSearchTerm}
+                    onFilterChange={updateFilter}
+                    onClearFilters={clearFilters}
+                    activeFiltersCount={activeFiltersCount}
+                    availableTechnologies={availableTechnologies}
+                  />
+                </motion.div>
+              </Suspense>
+
+              {/* Results count */}
+              <div
+                className="text-sm text-muted-foreground"
+                role="status"
+                aria-live="polite"
+              >
+                {filteredProjects.length} projet
+                {filteredProjects.length > 1 ? "s" : ""} trouvé
+                {filteredProjects.length > 1 ? "s" : ""}
+              </div>
+
+              {/* Projects Grid */}
+              <Suspense
+                fallback={
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {Array.from({ length: 6 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="h-80 bg-muted/50 animate-pulse rounded-lg"
+                      />
+                    ))}
+                  </div>
+                }
+              >
+                <ProjectGrid
+                  projects={displayedProjects}
+                  onProjectClick={setSelectedProject}
+                />
+              </Suspense>
+
+              {/* Load More */}
+              {hasMoreProjects && (
+                <div className="text-center">
+                  <Button
+                    onClick={() => setShowAll(true)}
+                    variant="outline"
+                    size="lg"
+                  >
+                    Voir tous les projets ({filteredProjects.length - 6} de
+                    plus)
+                  </Button>
+                </div>
+              )}
+            </TabsContent>
+
+            <TabsContent
+              value="featured"
+              className="space-y-8"
+              role="tabpanel"
+              id="featured-projects"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <div className="text-center mb-6">
+                  <p className="text-muted-foreground">
+                    Mes projets les plus représentatifs de mon travail
+                  </p>
+                </div>
+                <Suspense
+                  fallback={
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {Array.from({ length: 3 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="h-80 bg-muted/50 animate-pulse rounded-lg"
+                        />
+                      ))}
+                    </div>
+                  }
+                >
+                  <ProjectGrid
+                    projects={featuredProjects}
+                    variant="featured"
+                    onProjectClick={setSelectedProject}
+                  />
+                </Suspense>
+              </motion.div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </motion.section>
+
+      {/* Project Modal */}
+      {selectedProject && (
+        <Suspense fallback={null}>
+          <ProjectModal
+            project={selectedProject}
+            isOpen={!!selectedProject}
+            onCloseAction={() => setSelectedProject(null)}
+          />
+        </Suspense>
+      )}
+    </ErrorBoundary>
   );
 }

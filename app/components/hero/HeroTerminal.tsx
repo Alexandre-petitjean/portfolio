@@ -21,30 +21,6 @@ const ANIMATION_DELAYS = {
 // Animation duration constant
 const TYPING_DURATION = 30;
 
-const terminalData = {
-  situation: {
-    command: "$ situation",
-    result: "> Deadline critique. Tech legacy. Stack bancale.",
-  },
-  action: {
-    command: "$ action",
-    result: "> Audit, refacto ciblé, CI/CD robuste, infra stable.",
-  },
-  outcome: {
-    command: "$ outcome",
-    result: "> Livraison à l'heure. Équipe libérée. Business sécurisé.",
-  },
-  feedback: {
-    command: "$ feedback",
-    result:
-      '> "Alexandre a sauvé notre sprint. Et notre budget." – un CTO rassuré',
-  },
-  current_status: {
-    command: "$ current_status",
-    result: "✅ Disponible pour projets critiques.",
-  },
-};
-
 export default function HeroTerminal() {
   const intl = useIntl();
   return (

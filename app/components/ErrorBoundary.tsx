@@ -1,54 +1,77 @@
 "use client";
 
-import { Component, ReactNode } from "react";
+import React, { Component, ErrorInfo, ReactNode } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AlertTriangle, RefreshCw } from "lucide-react";
 
-interface ErrorBoundaryProps {
+interface Props {
   children: ReactNode;
   fallback?: ReactNode;
 }
 
-interface ErrorBoundaryState {
+interface State {
   hasError: boolean;
+  error?: Error;
 }
 
-export class ErrorBoundary extends Component<
-  ErrorBoundaryProps,
-  ErrorBoundaryState
-> {
-  constructor(props: ErrorBoundaryProps) {
-    super(props);
-    this.state = { hasError: false };
+class ErrorBoundary extends Component<Props, State> {
+  public state: State = {
+    hasError: false,
+  };
+
+  public static getDerivedStateFromError(error: Error): State {
+    return { hasError: true, error };
   }
 
-  static getDerivedStateFromError(): ErrorBoundaryState {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("ErrorBoundary caught an error:", error, errorInfo);
   }
 
-  render() {
+  private handleRetry = () => {
+    this.setState({ hasError: false, error: undefined });
+  };
+
+  public render() {
     if (this.state.hasError) {
+      if (this.props.fallback) {
+        return this.props.fallback;
+      }
+
       return (
-        this.props.fallback || (
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-red-600 mb-4">
-                Une erreur est survenue
-              </h2>
-              <button
-                onClick={() => window.location.reload()}
-                className="px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700"
-              >
-                Recharger la page
-              </button>
+        <Card className="w-full max-w-md mx-auto mt-8">
+          <CardHeader className="text-center">
+            <div className="mx-auto w-12 h-12 bg-destructive/10 rounded-full flex items-center justify-center mb-4">
+              <AlertTriangle className="w-6 h-6 text-destructive" />
             </div>
-          </div>
-        )
+            <CardTitle>Une erreur s&apos;est produite</CardTitle>
+          </CardHeader>
+          <CardContent className="text-center space-y-4">
+            <p className="text-muted-foreground">
+              Quelque chose s&apos;est mal passé lors du chargement de cette
+              section.
+            </p>
+            {process.env.NODE_ENV === "development" && this.state.error && (
+              <details className="text-left">
+                <summary className="cursor-pointer text-sm font-medium">
+                  Détails de l&apos;erreur
+                </summary>
+                <pre className="mt-2 text-xs bg-muted p-2 rounded overflow-auto">
+                  {this.state.error.message}
+                </pre>
+              </details>
+            )}
+            <Button onClick={this.handleRetry} className="w-full">
+              <RefreshCw className="w-4 h-4 mr-2" />
+              Réessayer
+            </Button>
+          </CardContent>
+        </Card>
       );
     }
 
     return this.props.children;
   }
 }
+
+export default ErrorBoundary;

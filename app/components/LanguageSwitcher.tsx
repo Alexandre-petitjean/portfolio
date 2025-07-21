@@ -1,8 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useIntl } from "react-intl";
-import { useRouter } from "next/navigation";
-
 const LANGUAGES = [
   { code: "fr", label: "Français", flag: "🇫🇷" },
   { code: "en", label: "English", flag: "🇬🇧" },
@@ -15,7 +13,7 @@ export default function LanguageSwitcher() {
   const btnRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const intl = useIntl();
-  const router = useRouter();
+  // const router = useRouter(); // Commenté car non utilisé pour le moment
 
   useEffect(() => {
     const stored = localStorage.getItem("lang");
@@ -63,7 +61,7 @@ export default function LanguageSwitcher() {
       </button>
       {open && (
         <div className="absolute right-0 mt-2 w-24 rounded-lg shadow-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 z-50">
-          {LANGUAGES.map(({ code, flag, label }) => (
+          {LANGUAGES.map(({ code, flag }) => (
             <button
               key={code}
               onClick={() => handleChange(code)}

@@ -4,7 +4,7 @@ import { useState, useEffect, memo } from "react";
 import messagesFr from "@/app/constants/messages_fr";
 import messagesEn from "@/app/constants/messages_en";
 import HtmlLangSync from "@/app/components/HtmlLangSync";
-import { ErrorBoundary } from "@/app/components/ErrorBoundary";
+import ErrorBoundary from "@/app/components/ErrorBoundary";
 
 const ClientIntlProvider = memo(function ClientIntlProvider({
   children,

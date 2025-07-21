@@ -1,7 +1,7 @@
 "use client";
 
 import { useIntl } from "react-intl";
-import { Sparkles } from "lucide-react";
+// import { Sparkles } from "lucide-react"; // Commenté car non utilisé pour le moment
 import SkillColumn from "@/app/components/skills/SkillColumn";
 import { SKILL_CATEGORIES } from "@/app/constants/skillsData";
 

@@ -1,195 +1,182 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Project } from "@/app/types/project";
 
-// Validation schema pour les projets
-const validateProject = (project: unknown): project is Project => {
-  if (typeof project !== "object" || project === null) {
-    return false;
-  }
+interface UseProjectsReturn {
+  projects: Project[];
+  loading: boolean;
+  error: string | null;
+}
 
-  const proj = project as Record<string, unknown>;
-
-  return (
-    typeof proj.id === "string" &&
-    typeof proj.title === "string" &&
-    typeof proj.description === "string" &&
-    Array.isArray(proj.technologies) &&
-    typeof proj.images === "object" &&
-    proj.images !== null &&
-    typeof (proj.images as Record<string, unknown>).thumbnail === "string" &&
-    typeof (proj.images as Record<string, unknown>).alt === "string" &&
-    ["completed", "in_progress", "concept"].includes(proj.status as string) &&
-    typeof proj.featured === "boolean" &&
-    ["web", "mobile", "desktop", "api", "library"].includes(
-      proj.category as string,
-    )
-  );
-};
-
-// Mock data - à remplacer par un appel API ou CMS
+// Données mockées pour les projets - MISE À JOUR AVEC NOUVEAUX TYPES
 const mockProjects: Project[] = [
   {
     id: "1",
-    title: "Portfolio Moderne",
-    description: "Portfolio responsive avec animations et thème sombre",
+    title: "Portfolio Personnel",
+    slug: "portfolio-personnel",
+    description: "Portfolio moderne développé avec Next.js et TypeScript",
     longDescription:
-      "Un portfolio moderne développé avec Next.js 14, TypeScript et Tailwind CSS. Intègre des animations Framer Motion et un système de thème adaptatif.",
-    technologies: [
-      { name: "Next.js", category: "frontend" },
-      { name: "TypeScript", category: "frontend" },
-      { name: "Tailwind CSS", category: "frontend" },
-      { name: "Framer Motion", category: "frontend" },
-    ],
-    links: {
-      demo: "https://portfolio.example.com",
-      github: "https://github.com/user/portfolio",
-    },
+      "Un portfolio responsive et moderne utilisant les dernières technologies web. Intègre des animations fluides, un design adaptatif et une architecture optimisée pour les performances.",
+    image: "/projects/placeholder.svg", // Legacy support
     images: {
       thumbnail: "/projects/placeholder.svg",
+      alt: "Aperçu du portfolio personnel avec design moderne",
       gallery: ["/projects/placeholder.svg"],
-      alt: "Capture d'écran du portfolio",
     },
-    status: "completed",
-    featured: true,
+    technologies: [
+      { name: "Next.js", category: "framework" },
+      { name: "TypeScript", category: "language" },
+      { name: "Tailwind CSS", category: "styling" },
+      { name: "Framer Motion", category: "animation" },
+    ],
+    status: "in_progress", // Corrigé selon nouveaux types
     category: "web",
+    startDate: "2024-01-15",
+    links: {
+      github: "https://github.com/example/portfolio",
+      demo: "https://portfolio.example.com",
+    },
+    // Legacy support
+    githubUrl: "https://github.com/example/portfolio",
+    liveUrl: "https://portfolio.example.com",
+    teamSize: 1,
+    featured: true,
+    challenges: [
+      "Optimisation des performances avec Next.js",
+      "Implémentation d'animations complexes",
+      "Design responsive sur tous les appareils",
+    ],
+    achievements: [
+      "Score Lighthouse de 95+",
+      "Temps de chargement < 2s",
+      "Interface utilisateur intuitive",
+    ],
     metadata: {
-      created_at: new Date("2024-01-15"),
-      updated_at: new Date("2024-06-20"),
       views: 1250,
+      likes: 45,
+      stars: 12,
+      created_at: "2024-01-15T00:00:00Z",
+      updated_at: "2024-12-15T00:00:00Z",
+      featured_until: "2025-01-31T00:00:00Z",
     },
   },
   {
     id: "2",
-    title: "E-commerce App",
-    description: "Application e-commerce avec panier et paiement Stripe",
+    title: "API Django E-commerce",
+    slug: "api-django-ecommerce",
+    description: "API REST complète pour une plateforme e-commerce avec Django",
     longDescription:
-      "Une application e-commerce complète avec gestion des produits, panier d'achat, et intégration de paiement Stripe sécurisée.",
-    technologies: [
-      { name: "React", category: "frontend" },
-      { name: "Node.js", category: "backend" },
-      { name: "MongoDB", category: "database" },
-      { name: "Stripe", category: "tool" },
-    ],
-    links: {
-      demo: "https://shop.example.com",
-      github: "https://github.com/user/ecommerce",
-    },
+      "API robuste développée avec Django REST Framework pour gérer un système e-commerce complet. Inclut la gestion des produits, commandes, paiements et utilisateurs.",
+    image: "/projects/placeholder.svg",
     images: {
       thumbnail: "/projects/placeholder.svg",
-      alt: "Interface de l'application e-commerce",
+      alt: "Architecture API Django pour e-commerce",
+      gallery: [],
     },
-    status: "in_progress",
-    featured: true,
-    category: "web",
+    technologies: [
+      { name: "Django", category: "framework" },
+      { name: "Django REST Framework", category: "framework" },
+      { name: "PostgreSQL", category: "database" },
+      { name: "Redis", category: "cache" },
+      { name: "Celery", category: "task-queue" },
+    ],
+    status: "completed",
+    category: "api",
+    startDate: "2023-06-01",
+    endDate: "2023-12-15",
+    links: {
+      github: "https://github.com/example/ecommerce-api",
+      docs: "https://api-docs.example.com",
+    },
+    githubUrl: "https://github.com/example/ecommerce-api",
+    teamSize: 3,
+    featured: false,
+    challenges: [
+      "Gestion des transactions complexes",
+      "Optimisation des requêtes SQL",
+      "Architecture microservices",
+    ],
+    achievements: [
+      "Support de 10k+ utilisateurs simultanés",
+      "API documentée avec Swagger",
+      "Couverture de tests à 95%",
+    ],
     metadata: {
-      created_at: new Date("2024-03-10"),
-      updated_at: new Date("2024-07-15"),
-      views: 890,
+      views: 850,
+      likes: 32,
+      stars: 8,
+      created_at: "2023-06-01T00:00:00Z",
+      updated_at: "2023-12-15T00:00:00Z",
     },
   },
   {
     id: "3",
-    title: "Mobile Task Manager",
-    description: "Application mobile de gestion de tâches avec sync cloud",
+    title: "Application Mobile React Native",
+    slug: "app-mobile-react-native",
+    description: "Application mobile cross-platform avec React Native",
     longDescription:
-      "Une application mobile de productivité avec synchronisation cloud, notifications push et interface intuitive.",
-    technologies: [
-      { name: "React Native", category: "mobile" },
-      { name: "Firebase", category: "backend" },
-      { name: "Redux", category: "frontend" },
-    ],
-    links: {
-      github: "https://github.com/user/task-manager",
-    },
+      "Application mobile moderne développée avec React Native pour iOS et Android. Interface utilisateur native et performances optimisées.",
+    image: "/projects/placeholder.svg",
     images: {
       thumbnail: "/projects/placeholder.svg",
-      alt: "Interface de l'app mobile",
+      alt: "Interface mobile React Native moderne",
+      gallery: [],
     },
-    status: "concept",
-    featured: false,
+    technologies: [
+      { name: "React Native", category: "framework" },
+      { name: "TypeScript", category: "language" },
+      { name: "Redux Toolkit", category: "state-management" },
+      { name: "Expo", category: "platform" },
+    ],
+    status: "paused",
     category: "mobile",
+    startDate: "2024-03-01",
+    links: {
+      github: "https://github.com/example/mobile-app",
+    },
+    teamSize: 2,
+    featured: false,
+    challenges: [
+      "Synchronisation offline/online",
+      "Performance sur les anciens appareils",
+      "Navigation native complexe",
+    ],
     metadata: {
-      created_at: new Date("2024-05-01"),
-      updated_at: new Date("2024-05-01"),
-      views: 320,
+      views: 420,
+      likes: 18,
+      created_at: "2024-03-01T00:00:00Z",
+      updated_at: "2024-06-01T00:00:00Z",
     },
   },
 ];
 
-export const useProjects = () => {
+export function useProjects(): UseProjectsReturn {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchProjects = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      // Simulation d'un appel API avec gestion d'erreurs
-      await new Promise((resolve, reject) => {
-        const timeout = setTimeout(resolve, 1000);
-        // Simulation d'une erreur aléatoire pour les tests (à supprimer en production)
-        if (process.env.NODE_ENV === "development" && Math.random() < 0.01) {
-          clearTimeout(timeout);
-          reject(new Error("Erreur de simulation pour test"));
-        }
-      });
-
-      // Validation des données
-      const validatedProjects = mockProjects.filter((project) => {
-        const isValid = validateProject(project);
-        if (!isValid) {
-          console.warn("Projet invalide détecté:", project);
-        }
-        return isValid;
-      });
-
-      if (validatedProjects.length === 0) {
-        throw new Error("Aucun projet valide trouvé");
-      }
-
-      setProjects(validatedProjects);
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "Erreur inconnue lors du chargement des projets";
-
-      setError(errorMessage);
-      console.error("Erreur lors du chargement des projets:", error);
-
-      // En cas d'erreur, on peut fournir des données de fallback
-      if (process.env.NODE_ENV === "production") {
-        setProjects([]);
-      }
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
   useEffect(() => {
+    // Simulation d'un appel API
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        // Simulation de délai d'API
+        await new Promise((resolve) => setTimeout(resolve, 800));
+        setProjects(mockProjects);
+        setError(null);
+      } catch (err) {
+        setError("Erreur lors du chargement des projets");
+        console.error("Error fetching projects:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProjects();
-  }, [fetchProjects]);
-
-  const featuredProjects = projects.filter((project) => project.featured);
-
-  const getProjectsByCategory = useCallback(
-    (category: string) =>
-      projects.filter((project) => project.category === category),
-    [projects],
-  );
-
-  const refreshProjects = useCallback(() => {
-    fetchProjects();
-  }, [fetchProjects]);
+  }, []);
 
   return {
     projects,
-    featuredProjects,
     loading,
     error,
-    getProjectsByCategory,
-    refreshProjects,
   };
-};
+}

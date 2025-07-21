@@ -3,8 +3,23 @@
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { X, ExternalLink, Github, Calendar, Eye } from "lucide-react";
-import { Project } from "@/app/types/project";
+import {
+  X,
+  ExternalLink,
+  GitBranch,
+  Calendar,
+  Eye,
+  Star,
+  Heart,
+  Users,
+  BookOpen,
+} from "lucide-react";
+import {
+  Project,
+  PROJECT_STATUS_COLORS,
+  PROJECT_STATUS_LABELS,
+  PROJECT_CATEGORY_LABELS,
+} from "@/app/types/project";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,22 +41,10 @@ const contentVariants: Variants = {
   visible: {
     scale: 1,
     opacity: 1,
-    transition: { type: "spring" as const, damping: 25, stiffness: 500 },
+    transition: { type: "spring", damping: 25, stiffness: 500 },
   },
   exit: { scale: 0.8, opacity: 0 },
 };
-
-const statusColors = {
-  completed: "bg-green-500/10 text-green-700 border-green-500/20",
-  in_progress: "bg-blue-500/10 text-blue-700 border-blue-500/20",
-  concept: "bg-orange-500/10 text-orange-700 border-orange-500/20",
-} as const;
-
-const statusLabels = {
-  completed: "Terminé",
-  in_progress: "En cours",
-  concept: "Concept",
-} as const;
 
 export default function ProjectModal({
   project,
@@ -49,6 +52,13 @@ export default function ProjectModal({
   onCloseAction,
 }: ProjectModalProps) {
   if (!project) return null;
+
+  // Support legacy pour les liens
+  const demoUrl = project.links?.demo || project.liveUrl;
+  const githubUrl = project.links?.github || project.githubUrl;
+  const imageSrc =
+    project.images?.thumbnail || project.image || "/projects/placeholder.svg";
+  const imageAlt = project.images?.alt || `Aperçu du projet ${project.title}`;
 
   return (
     <AnimatePresence>
@@ -63,77 +73,121 @@ export default function ProjectModal({
         >
           <motion.div
             variants={contentVariants}
-            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-background rounded-lg shadow-2xl"
+            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-background rounded-xl shadow-2xl border"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
-            <div className="sticky top-0 bg-background/95 backdrop-blur-sm border-b p-6 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <h2 className="text-2xl font-bold">{project.title}</h2>
-                <Badge
-                  variant="secondary"
-                  className={statusColors[project.status]}
-                >
-                  {statusLabels[project.status]}
-                </Badge>
-                {project.featured && (
-                  <Badge variant="default">⭐ Mis en avant</Badge>
-                )}
-              </div>
-              <Button variant="ghost" size="sm" onClick={onCloseAction}>
+            {/* Header avec image */}
+            <div className="relative h-64 md:h-80 overflow-hidden rounded-t-xl">
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 896px"
+              />
+
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+              {/* Close button */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onCloseAction}
+                className="absolute top-4 right-4 z-10 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20"
+                aria-label="Fermer la modal"
+              >
                 <X className="h-4 w-4" />
               </Button>
+
+              {/* Title and badges overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <Badge
+                    className={`${PROJECT_STATUS_COLORS[project.status]} backdrop-blur-sm border`}
+                  >
+                    {PROJECT_STATUS_LABELS[project.status]}
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="backdrop-blur-sm bg-white/10 text-white border-white/20"
+                  >
+                    {PROJECT_CATEGORY_LABELS[project.category]}
+                  </Badge>
+                  {project.featured && (
+                    <Badge className="bg-yellow-500/90 text-yellow-900 border-yellow-400">
+                      <Star className="w-3 h-3 mr-1" />
+                      Mis en avant
+                    </Badge>
+                  )}
+                </div>
+
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                  {project.title}
+                </h2>
+
+                <p className="text-gray-200 text-lg">{project.description}</p>
+              </div>
             </div>
 
             <div className="p-6 space-y-6">
-              {/* Image Gallery */}
-              <div className="space-y-4">
-                <div className="relative h-64 md:h-80 rounded-lg overflow-hidden">
-                  <Image
-                    src={project.images.thumbnail}
-                    alt={project.images.alt}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-
-                {project.images.gallery &&
-                  project.images.gallery.length > 0 && (
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                      {project.images.gallery.map(
-                        (image: string, index: number) => (
-                          <div
-                            key={index}
-                            className="relative h-24 rounded overflow-hidden"
-                          >
-                            <Image
-                              src={image}
-                              alt={`${project.title} - Image ${index + 1}`}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                        ),
-                      )}
-                    </div>
-                  )}
+              {/* Actions bar */}
+              <div className="flex flex-wrap gap-3">
+                {demoUrl && (
+                  <Button asChild size="lg">
+                    <Link
+                      href={demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Voir la démo
+                    </Link>
+                  </Button>
+                )}
+                {githubUrl && (
+                  <Button variant="outline" asChild size="lg">
+                    <Link
+                      href={githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <GitBranch className="h-4 w-4 mr-2" />
+                      Code source
+                    </Link>
+                  </Button>
+                )}
+                {project.links?.docs && (
+                  <Button variant="outline" asChild size="lg">
+                    <Link
+                      href={project.links.docs}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <BookOpen className="h-4 w-4 mr-2" />
+                      Documentation
+                    </Link>
+                  </Button>
+                )}
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
                 {/* Main Content */}
                 <div className="md:col-span-2 space-y-6">
-                  {/* Description */}
+                  {/* Description détaillée */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-3">Description</h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <h3 className="text-xl font-semibold mb-3">
+                      À propos du projet
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed text-base">
                       {project.longDescription || project.description}
                     </p>
                   </div>
 
                   {/* Technologies */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-3">
+                    <h3 className="text-xl font-semibold mb-3">
                       Technologies utilisées
                     </h3>
                     <div className="flex flex-wrap gap-2">
@@ -141,84 +195,108 @@ export default function ProjectModal({
                         <Badge
                           key={tech.name}
                           variant="outline"
-                          className="text-sm"
+                          className="text-sm px-3 py-1"
+                          title={
+                            tech.category
+                              ? `${tech.name} - ${tech.category}`
+                              : tech.name
+                          }
                         >
                           {tech.name}
                         </Badge>
                       ))}
                     </div>
                   </div>
+
+                  {/* Défis et réalisations */}
+                  {(project.challenges?.length ||
+                    project.achievements?.length) && (
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {project.challenges && project.challenges.length > 0 && (
+                        <div>
+                          <h4 className="text-lg font-semibold mb-3 text-orange-600 dark:text-orange-400">
+                            Défis techniques
+                          </h4>
+                          <ul className="space-y-2">
+                            {project.challenges.map((challenge, index) => (
+                              <li
+                                key={index}
+                                className="flex items-start gap-3"
+                              >
+                                <div className="w-2 h-2 rounded-full bg-orange-500 mt-2 flex-shrink-0" />
+                                <p className="text-muted-foreground text-sm">
+                                  {challenge}
+                                </p>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {project.achievements &&
+                        project.achievements.length > 0 && (
+                          <div>
+                            <h4 className="text-lg font-semibold mb-3 text-green-600 dark:text-green-400">
+                              Réalisations
+                            </h4>
+                            <ul className="space-y-2">
+                              {project.achievements.map(
+                                (achievement, index) => (
+                                  <li
+                                    key={index}
+                                    className="flex items-start gap-3"
+                                  >
+                                    <div className="w-2 h-2 rounded-full bg-green-500 mt-2 flex-shrink-0" />
+                                    <p className="text-muted-foreground text-sm">
+                                      {achievement}
+                                    </p>
+                                  </li>
+                                ),
+                              )}
+                            </ul>
+                          </div>
+                        )}
+                    </div>
+                  )}
                 </div>
 
-                {/* Sidebar */}
+                {/* Sidebar avec métadonnées */}
                 <div className="space-y-4">
-                  {/* Actions */}
+                  {/* Stats */}
                   <Card>
-                    <CardContent className="p-4 space-y-3">
-                      <h4 className="font-semibold">Actions</h4>
-
-                      {project.links.demo && (
-                        <Button asChild className="w-full">
-                          <Link href={project.links.demo} target="_blank">
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            Voir la démo
-                          </Link>
-                        </Button>
-                      )}
-
-                      {project.links.github && (
-                        <Button variant="outline" asChild className="w-full">
-                          <Link href={project.links.github} target="_blank">
-                            <Github className="h-4 w-4 mr-2" />
-                            Code source
-                          </Link>
-                        </Button>
-                      )}
-
-                      {project.links.case_study && (
-                        <Button variant="outline" asChild className="w-full">
-                          <Link href={project.links.case_study} target="_blank">
-                            Étude de cas
-                          </Link>
-                        </Button>
-                      )}
-                    </CardContent>
-                  </Card>
-
-                  {/* Metadata */}
-                  <Card>
-                    <CardContent className="p-4 space-y-3">
-                      <h4 className="font-semibold">Informations</h4>
-
-                      <div className="space-y-2 text-sm">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-muted-foreground">Créé:</span>
-                          <span>
-                            {new Intl.DateTimeFormat("fr-FR", {
-                              dateStyle: "medium",
-                            }).format(project.metadata.created_at)}
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-muted-foreground">
-                            Modifié:
-                          </span>
-                          <span>
-                            {new Intl.DateTimeFormat("fr-FR", {
-                              dateStyle: "medium",
-                            }).format(project.metadata.updated_at)}
-                          </span>
-                        </div>
-
+                    <CardContent className="p-4">
+                      <h4 className="font-semibold mb-3">Statistiques</h4>
+                      <div className="space-y-3">
                         {project.metadata.views && (
-                          <div className="flex items-center gap-2">
-                            <Eye className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">Vues:</span>
-                            <span>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <Eye className="h-4 w-4" />
+                              <span>Vues</span>
+                            </div>
+                            <span className="font-medium">
                               {project.metadata.views.toLocaleString("fr-FR")}
+                            </span>
+                          </div>
+                        )}
+                        {project.metadata.likes && (
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <Heart className="h-4 w-4" />
+                              <span>Likes</span>
+                            </div>
+                            <span className="font-medium">
+                              {project.metadata.likes}
+                            </span>
+                          </div>
+                        )}
+                        {project.metadata.stars && (
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <Star className="h-4 w-4" />
+                              <span>Étoiles</span>
+                            </div>
+                            <span className="font-medium">
+                              {project.metadata.stars}
                             </span>
                           </div>
                         )}
@@ -226,13 +304,78 @@ export default function ProjectModal({
                     </CardContent>
                   </Card>
 
-                  {/* Category */}
+                  {/* Informations du projet */}
                   <Card>
                     <CardContent className="p-4">
-                      <h4 className="font-semibold mb-2">Catégorie</h4>
-                      <Badge variant="secondary" className="capitalize">
-                        {project.category}
-                      </Badge>
+                      <h4 className="font-semibold mb-3">Informations</h4>
+                      <div className="space-y-3 text-sm">
+                        {/* Dates */}
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4 text-muted-foreground" />
+                          <div>
+                            <p className="text-muted-foreground">Créé le</p>
+                            <p>
+                              {new Intl.DateTimeFormat("fr-FR", {
+                                dateStyle: "medium",
+                              }).format(new Date(project.metadata.created_at))}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4 text-muted-foreground" />
+                          <div>
+                            <p className="text-muted-foreground">
+                              Mis à jour le
+                            </p>
+                            <p>
+                              {new Intl.DateTimeFormat("fr-FR", {
+                                dateStyle: "medium",
+                              }).format(new Date(project.metadata.updated_at))}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Équipe */}
+                        {project.teamSize && (
+                          <div className="flex items-center gap-2">
+                            <Users className="h-4 w-4 text-muted-foreground" />
+                            <div>
+                              <p className="text-muted-foreground">Équipe</p>
+                              <p>
+                                {project.teamSize}{" "}
+                                {project.teamSize === 1
+                                  ? "personne"
+                                  : "personnes"}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Période */}
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4 text-muted-foreground" />
+                          <div>
+                            <p className="text-muted-foreground">Période</p>
+                            <p>
+                              {new Intl.DateTimeFormat("fr-FR", {
+                                year: "numeric",
+                                month: "long",
+                              }).format(new Date(project.startDate))}
+                              {project.endDate &&
+                                project.status === "completed" && (
+                                  <>
+                                    {" - "}
+                                    {new Intl.DateTimeFormat("fr-FR", {
+                                      year: "numeric",
+                                      month: "long",
+                                    }).format(new Date(project.endDate))}
+                                  </>
+                                )}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                 </div>

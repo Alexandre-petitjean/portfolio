@@ -57,7 +57,9 @@ export default function ProjectModal({
   const demoUrl = project.links?.demo || project.liveUrl;
   const githubUrl = project.links?.github || project.githubUrl;
   const imageSrc =
-    project.images?.thumbnail || project.image || "/projects/placeholder.svg";
+    project.images?.thumbnail ||
+    project.image ||
+    "/projects/placeholder_web.png";
   const imageAlt = project.images?.alt || `Aperçu du projet ${project.title}`;
 
   return (
@@ -68,15 +70,14 @@ export default function ProjectModal({
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
           onClick={onCloseAction}
         >
           <motion.div
             variants={contentVariants}
-            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-background rounded-xl shadow-2xl border"
+            className="w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 rounded-xl shadow-2xl border"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header avec image */}
             <div className="relative h-64 md:h-80 overflow-hidden rounded-t-xl">
               <Image
                 src={imageSrc}
@@ -84,13 +85,11 @@ export default function ProjectModal({
                 fill
                 className="object-cover"
                 priority
-                sizes="(max-width: 768px) 100vw, 896px"
+                sizes="(max-width: 768px) 100vw, 1152px"
               />
 
-              {/* Overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-              {/* Close button */}
               <Button
                 variant="ghost"
                 size="sm"
@@ -101,7 +100,6 @@ export default function ProjectModal({
                 <X className="h-4 w-4" />
               </Button>
 
-              {/* Title and badges overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <Badge
@@ -116,8 +114,8 @@ export default function ProjectModal({
                     {PROJECT_CATEGORY_LABELS[project.category]}
                   </Badge>
                   {project.featured && (
-                    <Badge className="bg-yellow-500/90 text-yellow-900 border-yellow-400">
-                      <Star className="w-3 h-3 mr-1" />
+                    <Badge className="bg-primary-500/90 text-white border-primary-400/50 backdrop-blur-sm shadow-lg">
+                      <Star className="w-3 h-3 mr-1 fill-current" />
                       Mis en avant
                     </Badge>
                   )}
@@ -132,10 +130,13 @@ export default function ProjectModal({
             </div>
 
             <div className="p-6 space-y-6">
-              {/* Actions bar */}
               <div className="flex flex-wrap gap-3">
                 {demoUrl && (
-                  <Button asChild size="lg">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-primary-500 hover:bg-primary-600 text-white"
+                  >
                     <Link
                       href={demoUrl}
                       target="_blank"
@@ -173,9 +174,7 @@ export default function ProjectModal({
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
-                {/* Main Content */}
                 <div className="md:col-span-2 space-y-6">
-                  {/* Description détaillée */}
                   <div>
                     <h3 className="text-xl font-semibold mb-3">
                       À propos du projet
@@ -185,7 +184,6 @@ export default function ProjectModal({
                     </p>
                   </div>
 
-                  {/* Technologies */}
                   <div>
                     <h3 className="text-xl font-semibold mb-3">
                       Technologies utilisées
@@ -208,7 +206,6 @@ export default function ProjectModal({
                     </div>
                   </div>
 
-                  {/* Défis et réalisations */}
                   {(project.challenges?.length ||
                     project.achievements?.length) && (
                     <div className="grid md:grid-cols-2 gap-6">
@@ -260,11 +257,9 @@ export default function ProjectModal({
                   )}
                 </div>
 
-                {/* Sidebar avec métadonnées */}
                 <div className="space-y-4">
-                  {/* Stats */}
                   <Card>
-                    <CardContent className="p-4">
+                    <CardContent>
                       <h4 className="font-semibold mb-3">Statistiques</h4>
                       <div className="space-y-3">
                         {project.metadata.views && (
@@ -304,12 +299,10 @@ export default function ProjectModal({
                     </CardContent>
                   </Card>
 
-                  {/* Informations du projet */}
                   <Card>
-                    <CardContent className="p-4">
+                    <CardContent>
                       <h4 className="font-semibold mb-3">Informations</h4>
                       <div className="space-y-3 text-sm">
-                        {/* Dates */}
                         <div className="flex items-center gap-2">
                           <Calendar className="h-4 w-4 text-muted-foreground" />
                           <div>
@@ -336,7 +329,6 @@ export default function ProjectModal({
                           </div>
                         </div>
 
-                        {/* Équipe */}
                         {project.teamSize && (
                           <div className="flex items-center gap-2">
                             <Users className="h-4 w-4 text-muted-foreground" />
@@ -352,7 +344,6 @@ export default function ProjectModal({
                           </div>
                         )}
 
-                        {/* Période */}
                         <div className="flex items-center gap-2">
                           <Calendar className="h-4 w-4 text-muted-foreground" />
                           <div>

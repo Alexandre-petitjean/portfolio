@@ -47,10 +47,10 @@ type Props = {
   setSelectedTech: (t: string) => void;
   availableTechnologies: string[];
   activeFiltersCount: number;
-  handleClearFilters: () => void;
+  onClearFilters: () => void;
 };
 
-const ProjectFilters: FC<Props> = ({
+const ProjectFilterLogic: FC<Props> = ({
   statusFilter,
   setStatusFilter,
   statusCounts,
@@ -63,24 +63,24 @@ const ProjectFilters: FC<Props> = ({
   setSelectedTech,
   availableTechnologies,
   activeFiltersCount,
-  handleClearFilters,
+  onClearFilters,
 }) => (
   <div className="mb-12 space-y-6">
     <div className="max-w-2xl mx-auto">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-200 w-5 h-5 pointer-events-none z-10" />
         <Input
           placeholder="Rechercher un projet, une technologie..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="pl-10 pr-4 py-3 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border-gray-200/50 dark:border-gray-700/50 text-base"
+          className="pl-10 pr-4 py-3 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border-gray-200/50 dark:border-gray-700/50 text-base rounded-lg shadow-sm focus:ring-2 focus:ring-primary-500 relative"
         />
         {searchTerm && (
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setSearchTerm("")}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary-600 hover:text-primary-800"
           >
             <X className="w-4 h-4" />
           </Button>
@@ -92,7 +92,7 @@ const ProjectFilters: FC<Props> = ({
         variant={statusFilter === "all" ? "default" : "outline"}
         size="sm"
         onClick={() => setStatusFilter("all")}
-        className="px-4"
+        className={`px-4 rounded-full ${statusFilter === "all" ? "bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-md" : "bg-primary-100 text-primary-700 hover:bg-primary-200"}`}
       >
         Tous ({statusCounts.all})
       </Button>
@@ -106,7 +106,7 @@ const ProjectFilters: FC<Props> = ({
               variant={statusFilter === status ? "default" : "outline"}
               size="sm"
               onClick={() => setStatusFilter(status)}
-              className="px-4"
+              className={`px-4 rounded-full ${statusFilter === status ? "bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-md" : "bg-primary-100 text-primary-700 hover:bg-primary-200"}`}
             >
               <Icon className="w-4 h-4 mr-2" />
               {PROJECT_STATUS_LABELS[status]} ({statusCounts[status]})
@@ -119,7 +119,7 @@ const ProjectFilters: FC<Props> = ({
         variant={categoryFilter === "all" ? "default" : "outline"}
         size="sm"
         onClick={() => setCategoryFilter("all")}
-        className="px-4"
+        className={`px-4 rounded-full ${categoryFilter === "all" ? "bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-md" : "bg-primary-100 text-primary-700 hover:bg-primary-200"}`}
       >
         Toutes catégories
       </Button>
@@ -131,7 +131,7 @@ const ProjectFilters: FC<Props> = ({
             variant={categoryFilter === category ? "default" : "outline"}
             size="sm"
             onClick={() => setCategoryFilter(category)}
-            className="px-4"
+            className={`px-4 rounded-full ${categoryFilter === category ? "bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-md" : "bg-primary-100 text-primary-700 hover:bg-primary-200"}`}
           >
             {PROJECT_CATEGORY_LABELS[category]} ({categoryCounts[category]})
           </Button>
@@ -203,7 +203,7 @@ const ProjectFilters: FC<Props> = ({
         <Button
           variant="ghost"
           size="sm"
-          onClick={handleClearFilters}
+          onClick={onClearFilters}
           className="text-xs"
         >
           Effacer tout
@@ -213,4 +213,4 @@ const ProjectFilters: FC<Props> = ({
   </div>
 );
 
-export default ProjectFilters;
+export default ProjectFilterLogic;

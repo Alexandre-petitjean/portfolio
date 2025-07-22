@@ -65,9 +65,7 @@ export default function ProjectFilter({
         {categories.map((category) => (
           <Button
             key={category.value}
-            variant={
-              filters.category === category.value ? "default" : "outline"
-            }
+            variant="ghost"
             size="sm"
             onClick={() =>
               onFilterChange(
@@ -77,7 +75,11 @@ export default function ProjectFilter({
                   : category.value,
               )
             }
-            className="h-8"
+            className={`h-8 rounded-full border transition-all ${
+              filters.category === category.value
+                ? "bg-primary-500 text-white border-primary-500 hover:bg-primary-600"
+                : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+            }`}
           >
             {category.label}
           </Button>
@@ -90,7 +92,7 @@ export default function ProjectFilter({
         {statuses.map((status) => (
           <Button
             key={status.value}
-            variant={filters.status === status.value ? "default" : "outline"}
+            variant="ghost"
             size="sm"
             onClick={() =>
               onFilterChange(
@@ -98,7 +100,11 @@ export default function ProjectFilter({
                 filters.status === status.value ? undefined : status.value,
               )
             }
-            className="h-8"
+            className={`h-8 rounded-full border transition-all ${
+              filters.status === status.value
+                ? "bg-primary-500 text-white border-primary-500 hover:bg-primary-600"
+                : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+            }`}
           >
             {status.label}
           </Button>
@@ -106,12 +112,16 @@ export default function ProjectFilter({
 
         {/* Featured */}
         <Button
-          variant={filters.featured ? "default" : "outline"}
+          variant="ghost"
           size="sm"
           onClick={() =>
             onFilterChange("featured", filters.featured ? undefined : true)
           }
-          className="h-8"
+          className={`h-8 rounded-full border transition-all ${
+            filters.featured
+              ? "bg-primary-500 text-white border-primary-500 hover:bg-primary-600"
+              : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+          }`}
         >
           ⭐ Mis en avant
         </Button>

@@ -16,11 +16,11 @@ const mockProjects: Project[] = [
     description: "Portfolio moderne développé avec Next.js et TypeScript",
     longDescription:
       "Un portfolio responsive et moderne utilisant les dernières technologies web. Intègre des animations fluides, un design adaptatif et une architecture optimisée pour les performances.",
-    image: "/projects/placeholder.svg", // Legacy support
+    image: "/projects/placeholder_web.png", // Legacy support
     images: {
-      thumbnail: "/projects/placeholder.svg",
+      thumbnail: "/projects/placeholder_web.png",
       alt: "Aperçu du portfolio personnel avec design moderne",
-      gallery: ["/projects/placeholder.svg"],
+      gallery: ["/projects/placeholder_web.png"],
     },
     technologies: [
       { name: "Next.js", category: "framework" },
@@ -66,9 +66,9 @@ const mockProjects: Project[] = [
     description: "API REST complète pour une plateforme e-commerce avec Django",
     longDescription:
       "API robuste développée avec Django REST Framework pour gérer un système e-commerce complet. Inclut la gestion des produits, commandes, paiements et utilisateurs.",
-    image: "/projects/placeholder.svg",
+    image: "/projects/placeholder_web.png",
     images: {
-      thumbnail: "/projects/placeholder.svg",
+      thumbnail: "/projects/placeholder_web.png",
       alt: "Architecture API Django pour e-commerce",
       gallery: [],
     },
@@ -115,9 +115,9 @@ const mockProjects: Project[] = [
     description: "Application mobile cross-platform avec React Native",
     longDescription:
       "Application mobile moderne développée avec React Native pour iOS et Android. Interface utilisateur native et performances optimisées.",
-    image: "/projects/placeholder.svg",
+    image: "/projects/placeholder_web.png",
     images: {
-      thumbnail: "/projects/placeholder.svg",
+      thumbnail: "/projects/placeholder_web.png",
       alt: "Interface mobile React Native moderne",
       gallery: [],
     },

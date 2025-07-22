@@ -2,12 +2,12 @@
 
 import { motion, type Variants } from "framer-motion";
 import { Project } from "@/app/types/project";
-import ProjectCard from "@/app/components/ProjectCard";
+import ProjectCard from "@/app/components/projects/ProjectCard";
 
 interface ProjectGridProps {
   projects: Project[];
   variant?: "default" | "featured" | "compact";
-  onProjectClick: (project: Project) => void;
+  onProjectClickAction: (project: Project) => void;
 }
 
 const containerVariants: Variants = {
@@ -23,7 +23,7 @@ const containerVariants: Variants = {
 export default function ProjectGrid({
   projects,
   variant = "default",
-  onProjectClick,
+  onProjectClickAction,
 }: ProjectGridProps) {
   if (projects.length === 0) {
     return (
@@ -50,12 +50,13 @@ export default function ProjectGrid({
       animate="visible"
       className={gridClass}
     >
-      {projects.map((project) => (
+      {projects.map((project, index) => (
         <ProjectCard
           key={project.id}
           project={project}
           variant={variant}
-          onClick={() => onProjectClick(project)}
+          onClickAction={() => onProjectClickAction(project)}
+          index={index}
         />
       ))}
     </motion.div>

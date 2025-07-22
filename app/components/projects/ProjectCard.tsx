@@ -3,30 +3,15 @@
 import React, { memo, useCallback } from "react";
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import {
-  ExternalLink,
-  GitBranch,
-  Calendar,
-  Eye,
-  Star,
-  Heart,
-} from "lucide-react";
+import { Calendar, Eye, Star, Heart } from "lucide-react";
 import {
   Project,
   PROJECT_STATUS_COLORS,
   PROJECT_STATUS_LABELS,
   PROJECT_CATEGORY_LABELS,
 } from "@/app/types/project";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 
 interface ProjectCardProps {
   project: Project;
@@ -73,18 +58,12 @@ export const ProjectCard = memo(function ProjectCard({
     [onClickAction],
   );
 
-  const handleLinkClick = useCallback((event: React.MouseEvent) => {
-    event.stopPropagation();
-  }, []);
-
   // Support legacy et nouvelle structure d'images
   const imageSrc =
-    project.images?.thumbnail || project.image || "/projects/placeholder.svg";
+    project.images?.thumbnail ||
+    project.image ||
+    "/projects/placeholder_web.png";
   const imageAlt = project.images?.alt || `Aperçu du projet ${project.title}`;
-
-  // Support legacy pour les liens
-  const demoUrl = project.links?.demo || project.liveUrl;
-  const githubUrl = project.links?.github || project.githubUrl;
 
   return (
     <motion.div
@@ -96,9 +75,9 @@ export const ProjectCard = memo(function ProjectCard({
       className="h-full"
     >
       <Card
-        className={`h-full overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl ${
+        className={`h-full overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl p-0 ${
           isFeatured
-            ? "ring-2 ring-primary/20 bg-gradient-to-br from-primary/5 to-primary/10"
+            ? "ring-2 ring-primary-400/60 bg-gradient-to-br from-primary-50/80 to-primary-100/60 dark:from-primary-900/30 dark:to-primary-800/20 shadow-lg shadow-primary-500/20"
             : "border-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800"
         }`}
         onClick={onClickAction}
@@ -107,35 +86,38 @@ export const ProjectCard = memo(function ProjectCard({
         role="button"
         aria-label={`Voir les détails du projet ${project.title}`}
       >
-        {/* Image Container */}
-        <div
-          className={`relative overflow-hidden ${isCompact ? "h-32" : "h-48"}`}
-        >
+        {/* Image Container - directement en haut sans espace */}
+        <div className="relative">
           <Image
             src={imageSrc}
             alt={imageAlt}
-            fill
-            className="object-cover transition-transform duration-500 hover:scale-110"
+            width={400}
+            height={200}
+            className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
+              isCompact ? "h-32" : "h-48"
+            }`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            loading={isFeatured && index < 2 ? undefined : "lazy"}
             priority={isFeatured && index < 2}
           />
 
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          {/* Badge "Mis en avant" en haut à droite */}
+          {isFeatured && (
+            <div className="absolute top-3 right-3">
+              <Badge className="bg-primary-500/90 text-white border-primary-400/50 backdrop-blur-sm shadow-lg">
+                <Star className="w-3 h-3 mr-1 fill-current" />
+                Mis en avant
+              </Badge>
+            </div>
+          )}
 
-          {/* Status Badge */}
-          <div className="absolute top-3 left-3">
+          {/* Badges statut et catégorie en bas à droite */}
+          <div className="absolute bottom-3 right-3 flex gap-2">
             <Badge
               className={`${PROJECT_STATUS_COLORS[project.status]} backdrop-blur-sm border`}
               aria-label={`Statut: ${PROJECT_STATUS_LABELS[project.status]}`}
             >
               {PROJECT_STATUS_LABELS[project.status]}
             </Badge>
-          </div>
-
-          {/* Category Badge */}
-          <div className="absolute top-3 right-3">
             <Badge
               variant="secondary"
               className="backdrop-blur-sm bg-white/10 text-white border-white/20"
@@ -143,81 +125,23 @@ export const ProjectCard = memo(function ProjectCard({
               {PROJECT_CATEGORY_LABELS[project.category]}
             </Badge>
           </div>
-
-          {/* Featured indicator */}
-          {isFeatured && (
-            <div className="absolute bottom-3 left-3">
-              <Badge className="bg-yellow-500/90 text-yellow-900 border-yellow-400">
-                <Star className="w-3 h-3 mr-1" />
-                Mis en avant
-              </Badge>
-            </div>
-          )}
-
-          {/* Quick Actions Overlay */}
-          <div className="absolute inset-0 bg-black/60 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
-            {demoUrl && (
-              <Button
-                size="sm"
-                variant="secondary"
-                asChild
-                onClick={handleLinkClick}
-              >
-                <Link
-                  href={demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Voir la démo de ${project.title}`}
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span className="sr-only">Voir la démo</span>
-                </Link>
-              </Button>
-            )}
-            {githubUrl && (
-              <Button
-                size="sm"
-                variant="secondary"
-                asChild
-                onClick={handleLinkClick}
-              >
-                <Link
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Voir le code source de ${project.title}`}
-                >
-                  <GitBranch className="w-4 h-4" />
-                  <span className="sr-only">Code source</span>
-                </Link>
-              </Button>
-            )}
-            <Button
-              size="sm"
-              variant="secondary"
-              aria-label={`Voir plus de détails sur ${project.title}`}
-            >
-              <Eye className="w-4 h-4" />
-              <span className="sr-only">Voir les détails</span>
-            </Button>
-          </div>
         </div>
 
-        {/* Content */}
-        <CardHeader className={isCompact ? "p-4 pb-2" : "pb-3"}>
-          <CardTitle
-            className={`line-clamp-1 ${isCompact ? "text-lg" : "text-xl"} font-bold`}
-          >
-            {project.title}
-          </CardTitle>
-          <CardDescription
-            className={`line-clamp-2 text-muted-foreground ${isCompact ? "text-sm" : ""}`}
-          >
-            {project.description}
-          </CardDescription>
-        </CardHeader>
+        {/* Content avec padding approprié */}
+        <div className="p-6 flex flex-col h-full">
+          <div className="pb-3">
+            <h3
+              className={`line-clamp-1 ${isCompact ? "text-lg" : "text-xl"} font-bold`}
+            >
+              {project.title}
+            </h3>
+            <p
+              className={`line-clamp-2 text-muted-foreground ${isCompact ? "text-sm" : ""} mt-1.5`}
+            >
+              {project.description}
+            </p>
+          </div>
 
-        <CardContent className={`pt-0 ${isCompact ? "p-4 pt-0" : ""}`}>
           {/* Technologies */}
           <div
             className="flex flex-wrap gap-1.5 mb-4"
@@ -226,8 +150,7 @@ export const ProjectCard = memo(function ProjectCard({
             {project.technologies.slice(0, isCompact ? 3 : 4).map((tech) => (
               <Badge
                 key={tech.name}
-                variant="outline"
-                className="text-xs"
+                className="text-xs bg-green-500 text-white hover:bg-green-600"
                 title={
                   tech.category ? `${tech.name} (${tech.category})` : tech.name
                 }
@@ -242,9 +165,11 @@ export const ProjectCard = memo(function ProjectCard({
             )}
           </div>
 
-          {/* Footer with metadata */}
+          {/* Spacer pour pousser le footer en bas */}
+          <div className="flex-1"></div>
+
+          {/* Footer avec metadata - toujours en bas */}
           <div className="flex items-center justify-between text-xs text-muted-foreground">
-            {/* Date */}
             <div className="flex items-center gap-1">
               <Calendar className="w-3 h-3" />
               <span>
@@ -255,7 +180,6 @@ export const ProjectCard = memo(function ProjectCard({
               </span>
             </div>
 
-            {/* Stats */}
             <div className="flex items-center gap-3">
               {project.metadata.views && (
                 <div
@@ -286,7 +210,7 @@ export const ProjectCard = memo(function ProjectCard({
               )}
             </div>
           </div>
-        </CardContent>
+        </div>
       </Card>
     </motion.div>
   );

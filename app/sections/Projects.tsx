@@ -7,9 +7,9 @@ import { Project, ProjectStatus, ProjectCategory } from "@/app/types/project";
 import { useProjects } from "@/app/hooks/useProjects";
 import { Button } from "@/components/ui/button";
 import ErrorBoundary from "@/app/components/ErrorBoundary";
-import { ProjectCard } from "@/app/components/projects/ProjectCard";
+import ProjectGrid from "@/app/components/projects/ProjectGrid";
 import ProjectModal from "@/app/components/projects/ProjectModal";
-import ProjectFilters from "@/app/components/projects/ProjectFilters";
+import ProjectFilterLogic from "@/app/components/projects/ProjectFilterLogic";
 
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -202,7 +202,7 @@ export default function Projects() {
           </header>
 
           <div className="mb-12 space-y-6">
-            <ProjectFilters
+            <ProjectFilterLogic
               statusFilter={statusFilter}
               setStatusFilter={setStatusFilter}
               statusCounts={statusCounts}
@@ -215,23 +215,31 @@ export default function Projects() {
               setSelectedTech={setSelectedTech}
               availableTechnologies={availableTechnologies}
               activeFiltersCount={activeFiltersCount}
-              handleClearFilters={handleClearFilters}
+              onClearFilters={handleClearFilters}
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <Suspense fallback={<div>Chargement des projets...</div>}>
             <AnimatePresence mode="wait">
-              {displayedProjects.map((project, index) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  index={index}
-                  variant={project.featured ? "featured" : "default"}
-                  onClickAction={() => handleProjectClick(project)}
+              <motion.div
+                key={
+                  showAll
+                    ? "all"
+                    : "paginated" +
+                      `${statusFilter}-${categoryFilter}-${searchTerm}-${selectedTech}`
+                }
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ProjectGrid
+                  projects={displayedProjects}
+                  onProjectClickAction={handleProjectClick}
                 />
-              ))}
+              </motion.div>
             </AnimatePresence>
-          </div>
+          </Suspense>
 
           {hasMoreProjects && (
             <div className="text-center">
